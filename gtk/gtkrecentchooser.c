@@ -51,7 +51,7 @@ gtk_recent_chooser_get_type (void)
   if (!chooser_type)
     {
       chooser_type = g_type_register_static_simple (G_TYPE_INTERFACE,
-						    I_("GtkRecentChooser"),
+						    g_intern_static_string("GtkRecentChooser"),
 						    sizeof (GtkRecentChooserIface),
 						    (GClassInitFunc) gtk_recent_chooser_class_init,
 						    0, NULL, 0);
@@ -79,7 +79,7 @@ gtk_recent_chooser_class_init (gpointer g_iface)
    * Since: 2.10
    */
   chooser_signals[SELECTION_CHANGED] =
-    g_signal_new (I_("selection-changed"),
+    g_signal_new (g_intern_static_string("selection-changed"),
                   iface_type,
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (GtkRecentChooserIface, selection_changed),
@@ -99,7 +99,7 @@ gtk_recent_chooser_class_init (gpointer g_iface)
    * Since: 2.10
    */
   chooser_signals[ITEM_ACTIVATED] =
-    g_signal_new (I_("item-activated"),
+    g_signal_new (g_intern_static_string("item-activated"),
                   iface_type,
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkRecentChooserIface, item_activated),

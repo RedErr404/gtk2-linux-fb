@@ -825,7 +825,7 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
 
   /* Signals */
   widget_class->set_scroll_adjustments_signal =
-    g_signal_new (I_("set_scroll_adjustments"),
+    g_signal_new (g_intern_static_string("set_scroll_adjustments"),
 		  G_TYPE_FROM_CLASS (o_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTreeViewClass, set_scroll_adjustments),
@@ -851,7 +851,7 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
    * widget conceptual overview</link> as well as #GtkTreeSelection.
    */
   tree_view_signals[ROW_ACTIVATED] =
-    g_signal_new (I_("row_activated"),
+    g_signal_new (g_intern_static_string("row_activated"),
 		  G_TYPE_FROM_CLASS (o_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTreeViewClass, row_activated),
@@ -873,7 +873,7 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
    * Returns: %TRUE to allow expansion, %FALSE to reject
    */
   tree_view_signals[TEST_EXPAND_ROW] =
-    g_signal_new (I_("test-expand-row"),
+    g_signal_new (g_intern_static_string("test-expand-row"),
 		  G_TYPE_FROM_CLASS (o_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkTreeViewClass, test_expand_row),
@@ -895,7 +895,7 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
    * Returns: %TRUE to allow expansion, %FALSE to reject
    */
   tree_view_signals[TEST_COLLAPSE_ROW] =
-    g_signal_new (I_("test-collapse-row"),
+    g_signal_new (g_intern_static_string("test-collapse-row"),
 		  G_TYPE_FROM_CLASS (o_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkTreeViewClass, test_collapse_row),
@@ -914,7 +914,7 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
    * The given row has been expanded (child nodes are shown).
    */
   tree_view_signals[ROW_EXPANDED] =
-    g_signal_new (I_("row-expanded"),
+    g_signal_new (g_intern_static_string("row-expanded"),
 		  G_TYPE_FROM_CLASS (o_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkTreeViewClass, row_expanded),
@@ -933,7 +933,7 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
    * The given row has been collapsed (child nodes are hidden).
    */
   tree_view_signals[ROW_COLLAPSED] =
-    g_signal_new (I_("row-collapsed"),
+    g_signal_new (g_intern_static_string("row-collapsed"),
 		  G_TYPE_FROM_CLASS (o_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkTreeViewClass, row_collapsed),
@@ -950,7 +950,7 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
    * The number of columns of the treeview has changed.
    */
   tree_view_signals[COLUMNS_CHANGED] =
-    g_signal_new (I_("columns-changed"),
+    g_signal_new (g_intern_static_string("columns-changed"),
 		  G_TYPE_FROM_CLASS (o_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkTreeViewClass, columns_changed),
@@ -965,7 +965,7 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
    * The position of the cursor (focused cell) has changed.
    */
   tree_view_signals[CURSOR_CHANGED] =
-    g_signal_new (I_("cursor-changed"),
+    g_signal_new (g_intern_static_string("cursor-changed"),
 		  G_TYPE_FROM_CLASS (o_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkTreeViewClass, cursor_changed),
@@ -974,7 +974,7 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
 		  G_TYPE_NONE, 0);
 
   tree_view_signals[MOVE_CURSOR] =
-    g_signal_new (I_("move_cursor"),
+    g_signal_new (g_intern_static_string("move_cursor"),
 		  G_TYPE_FROM_CLASS (object_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTreeViewClass, move_cursor),
@@ -985,7 +985,7 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
 		  G_TYPE_INT);
 
   tree_view_signals[SELECT_ALL] =
-    g_signal_new (I_("select_all"),
+    g_signal_new (g_intern_static_string("select_all"),
 		  G_TYPE_FROM_CLASS (object_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTreeViewClass, select_all),
@@ -994,7 +994,7 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
 		  G_TYPE_BOOLEAN, 0);
 
   tree_view_signals[UNSELECT_ALL] =
-    g_signal_new (I_("unselect_all"),
+    g_signal_new (g_intern_static_string("unselect_all"),
 		  G_TYPE_FROM_CLASS (object_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTreeViewClass, unselect_all),
@@ -1003,7 +1003,7 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
 		  G_TYPE_BOOLEAN, 0);
 
   tree_view_signals[SELECT_CURSOR_ROW] =
-    g_signal_new (I_("select_cursor_row"),
+    g_signal_new (g_intern_static_string("select_cursor_row"),
 		  G_TYPE_FROM_CLASS (object_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTreeViewClass, select_cursor_row),
@@ -1013,7 +1013,7 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
 		  G_TYPE_BOOLEAN);
 
   tree_view_signals[TOGGLE_CURSOR_ROW] =
-    g_signal_new (I_("toggle_cursor_row"),
+    g_signal_new (g_intern_static_string("toggle_cursor_row"),
 		  G_TYPE_FROM_CLASS (object_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTreeViewClass, toggle_cursor_row),
@@ -1022,7 +1022,7 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
 		  G_TYPE_BOOLEAN, 0);
 
   tree_view_signals[EXPAND_COLLAPSE_CURSOR_ROW] =
-    g_signal_new (I_("expand_collapse_cursor_row"),
+    g_signal_new (g_intern_static_string("expand_collapse_cursor_row"),
 		  G_TYPE_FROM_CLASS (object_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTreeViewClass, expand_collapse_cursor_row),
@@ -1034,7 +1034,7 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
 		  G_TYPE_BOOLEAN);
 
   tree_view_signals[SELECT_CURSOR_PARENT] =
-    g_signal_new (I_("select_cursor_parent"),
+    g_signal_new (g_intern_static_string("select_cursor_parent"),
 		  G_TYPE_FROM_CLASS (object_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTreeViewClass, select_cursor_parent),
@@ -1043,7 +1043,7 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
 		  G_TYPE_BOOLEAN, 0);
 
   tree_view_signals[START_INTERACTIVE_SEARCH] =
-    g_signal_new (I_("start_interactive_search"),
+    g_signal_new (g_intern_static_string("start_interactive_search"),
 		  G_TYPE_FROM_CLASS (object_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTreeViewClass, start_interactive_search),
@@ -6391,7 +6391,7 @@ set_source_row (GdkDragContext *context,
                 GtkTreePath    *source_row)
 {
   g_object_set_data_full (G_OBJECT (context),
-                          I_("gtk-tree-view-source-row"),
+                          g_intern_static_string("gtk-tree-view-source-row"),
                           source_row ? gtk_tree_row_reference_new (model, source_row) : NULL,
                           (GDestroyNotify) (source_row ? gtk_tree_row_reference_free : NULL));
 }
@@ -6439,7 +6439,7 @@ set_dest_row (GdkDragContext *context,
 
   if (!dest_row)
     {
-      g_object_set_data_full (G_OBJECT (context), I_("gtk-tree-view-dest-row"),
+      g_object_set_data_full (G_OBJECT (context), g_intern_static_string("gtk-tree-view-dest-row"),
                               NULL, NULL);
       return;
     }
@@ -6451,7 +6451,7 @@ set_dest_row (GdkDragContext *context,
   dr->empty_view_drop = empty_view_drop;
   dr->drop_append_mode = drop_append_mode;
 
-  g_object_set_data_full (G_OBJECT (context), I_("gtk-tree-view-dest-row"),
+  g_object_set_data_full (G_OBJECT (context), g_intern_static_string("gtk-tree-view-dest-row"),
                           dr, (GDestroyNotify) dest_row_free);
 }
 
@@ -6494,7 +6494,7 @@ set_status_pending (GdkDragContext *context,
                     GdkDragAction   suggested_action)
 {
   g_object_set_data (G_OBJECT (context),
-                     I_("gtk-tree-view-status-pending"),
+                     g_intern_static_string("gtk-tree-view-status-pending"),
                      GINT_TO_POINTER (suggested_action));
 }
 
@@ -6549,7 +6549,7 @@ ensure_info (GtkTreeView *tree_view)
       di = g_new0 (TreeViewDragInfo, 1);
 
       g_object_set_data_full (G_OBJECT (tree_view),
-                              I_("gtk-tree-view-drag-info"),
+                              g_intern_static_string("gtk-tree-view-drag-info"),
                               di,
                               (GDestroyNotify) destroy_info);
     }
@@ -6560,7 +6560,7 @@ ensure_info (GtkTreeView *tree_view)
 static void
 remove_info (GtkTreeView *tree_view)
 {
-  g_object_set_data (G_OBJECT (tree_view), I_("gtk-tree-view-drag-info"), NULL);
+  g_object_set_data (G_OBJECT (tree_view), g_intern_static_string("gtk-tree-view-drag-info"), NULL);
 }
 
 #if 0

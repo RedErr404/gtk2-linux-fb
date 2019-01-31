@@ -2,6 +2,7 @@
 #define __GTKINTL_H__
 
 #include <glib/gi18n-lib.h>
+#include <glib/gquark.h>
 
 #ifdef ENABLE_NLS
 #define P_(String) dgettext(GETTEXT_PACKAGE "-properties",String)
@@ -10,6 +11,6 @@
 #endif
 
 /* not really I18N-related, but also a string marker macro */
-#define I_(string) g_intern_static_string (string)
+#define g_intern_static_string(string) g_intern_static_string (string)
 
 #endif

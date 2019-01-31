@@ -28,6 +28,7 @@
 #include "gdkvisual.h"
 #include "gdkprivate-fb.h"
 #include "gdkinternals.h"
+#include "gdkalias.h"
 #include <sys/ioctl.h>
 
 static GdkVisual *system_visual = NULL;
@@ -227,3 +228,6 @@ gdk_visual_get_screen (GdkVisual *visual)
 
   return gdk_screen_get_default ();
 }
+
+#define __GDK_VISUAL_FB_C__
+#include "gdkaliasdef.c"

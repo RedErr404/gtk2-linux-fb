@@ -184,7 +184,8 @@ png_simple_error_callback(png_structp png_save_ptr,
                              error_msg);
         }
 
-        longjmp (png_save_ptr->jmpbuf, 1);
+        
+        longjmp (png_jmpbuf(png_save_ptr), 1);
 }
 
 static void
@@ -282,7 +283,7 @@ gdk_pixbuf__png_image_load (FILE *f, GError **error)
 		return NULL;
 	}
 
-	if (setjmp (png_ptr->jmpbuf)) {
+	if (setjmp (png_jmpbuf(png_ptr))) {
 	    	if (rows)
 		  	g_free (rows);
 
@@ -442,14 +443,14 @@ gdk_pixbuf__png_image_begin_load (GdkPixbufModuleSizeFunc size_func,
                 /* error callback should have set the error */
                 return NULL;
         }
-        
-	if (setjmp (lc->png_read_ptr->jmpbuf)) {
+        /*
+	if (setjmp (png_jmpbuf(lc->png_read_ptr))) {
 		if (lc->png_info_ptr)
 			png_destroy_read_struct(&lc->png_read_ptr, NULL, NULL);
                 g_free(lc);
-                /* error callback should have set the error */
-                return NULL;
+                                return NULL;
 	}
+	*/
 
         /* Create the auxiliary context struct */
 
@@ -515,7 +516,7 @@ gdk_pixbuf__png_image_load_increment(gpointer context,
         lc->error = error;
         
         /* Invokes our callbacks as needed */
-	if (setjmp (lc->png_read_ptr->jmpbuf)) {
+	if (setjmp (png_jmpbuf(lc->png_read_ptr))) {
                 lc->error = NULL;
 		return FALSE;
 	} else {
@@ -735,7 +736,7 @@ png_error_callback(png_structp png_read_ptr,
                              error_msg);
         }
 
-        longjmp (png_read_ptr->jmpbuf, 1);
+        longjmp (png_jmpbuf(png_read_ptr), 1);
 }
 
 static void
@@ -925,7 +926,7 @@ static gboolean real_save_png (GdkPixbuf        *pixbuf,
 	       success = FALSE;
 	       goto cleanup;
        }
-       if (setjmp (png_ptr->jmpbuf)) {
+       if (setjmp (png_jmpbuf(png_ptr))) {
 	       success = FALSE;
 	       goto cleanup;
        }

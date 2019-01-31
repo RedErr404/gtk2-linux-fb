@@ -184,7 +184,7 @@ gtk_assistant_class_init (GtkAssistantClass *class)
    * Since: 2.10
    */
   signals[CANCEL] =
-    g_signal_new (I_("cancel"),
+    g_signal_new (g_intern_static_string("cancel"),
 		  G_TYPE_FROM_CLASS (gobject_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkAssistantClass, cancel),
@@ -204,7 +204,7 @@ gtk_assistant_class_init (GtkAssistantClass *class)
    * Since: 2.10
    */
   signals[PREPARE] =
-    g_signal_new (I_("prepare"),
+    g_signal_new (g_intern_static_string("prepare"),
 		  G_TYPE_FROM_CLASS (gobject_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkAssistantClass, prepare),
@@ -229,7 +229,7 @@ gtk_assistant_class_init (GtkAssistantClass *class)
    * Since: 2.10
    */
   signals[APPLY] =
-    g_signal_new (I_("apply"),
+    g_signal_new (g_intern_static_string("apply"),
 		  G_TYPE_FROM_CLASS (gobject_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkAssistantClass, apply),
@@ -248,7 +248,7 @@ gtk_assistant_class_init (GtkAssistantClass *class)
    * Since: 2.10
    */
   signals[CLOSE] =
-    g_signal_new (I_("close"),
+    g_signal_new (g_intern_static_string("close"),
 		  G_TYPE_FROM_CLASS (gobject_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkAssistantClass, close),

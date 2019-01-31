@@ -28,7 +28,8 @@
 #include "gdkfb.h"
 #include "gdkprivate-fb.h"
 #include "gdkcursor.h"
-
+#include "gdkdisplay.h"
+#include "gdkalias.h"
 #include "x-cursors.xbm"
 
 static struct {
@@ -536,3 +537,36 @@ gdk_cursor_get_display (GdkCursor *cursor)
 {
   return gdk_display_get_default ();
 }
+
+GdkCursor *
+gdk_cursor_new_from_pixbuf (GdkDisplay *display,
+                            GdkPixbuf  *pixbuf,
+                            gint        x,
+                            gint        y)
+{
+
+  return NULL;
+
+}
+
+GdkPixbuf*
+gdk_cursor_get_image (GdkCursor *cursor)
+{
+  g_return_val_if_fail (cursor != NULL, NULL);
+
+  return NULL;
+}
+
+GdkCursor*
+gdk_cursor_new_from_name (GdkDisplay  *display,
+                          const gchar *name)
+{
+
+
+  return NULL;
+}
+
+
+#define __GDK_CURSOR_FB_C__
+#include "gdkaliasdef.c"
+

@@ -77,7 +77,7 @@ _gtk_file_chooser_embed_set_delegate (GtkFileChooserEmbed *receiver,
   g_return_if_fail (GTK_IS_FILE_CHOOSER_EMBED (receiver));
   g_return_if_fail (GTK_IS_FILE_CHOOSER_EMBED (delegate));
   
-  g_object_set_data (G_OBJECT (receiver), I_("gtk-file-chooser-embed-delegate"), delegate);
+  g_object_set_data (G_OBJECT (receiver), g_intern_static_string("gtk-file-chooser-embed-delegate"), delegate);
 
   g_signal_connect (delegate, "default-size-changed",
 		    G_CALLBACK (delegate_default_size_changed), receiver);
@@ -146,7 +146,7 @@ _gtk_file_chooser_embed_get_type (void)
       };
 
       file_chooser_embed_type = g_type_register_static (G_TYPE_INTERFACE,
-							I_("GtkFileChooserEmbed"),
+							g_intern_static_string("GtkFileChooserEmbed"),
 							&file_chooser_embed_info, 0);
 
       g_type_interface_add_prerequisite (file_chooser_embed_type, GTK_TYPE_WIDGET);
@@ -160,14 +160,14 @@ gtk_file_chooser_embed_class_init (gpointer g_iface)
 {
   GType iface_type = G_TYPE_FROM_INTERFACE (g_iface);
 
-  g_signal_new (I_("default-size-changed"),
+  g_signal_new (g_intern_static_string("default-size-changed"),
 		iface_type,
 		G_SIGNAL_RUN_LAST,
 		G_STRUCT_OFFSET (GtkFileChooserEmbedIface, default_size_changed),
 		NULL, NULL,
 		_gtk_marshal_VOID__VOID,
 		G_TYPE_NONE, 0);
-  g_signal_new (I_("response-requested"),
+  g_signal_new (g_intern_static_string("response-requested"),
 		iface_type,
 		G_SIGNAL_RUN_LAST,
 		G_STRUCT_OFFSET (GtkFileChooserEmbedIface, response_requested),

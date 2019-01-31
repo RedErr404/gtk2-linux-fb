@@ -29,6 +29,7 @@
 #include "gdkprivate-fb.h"
 #include "gdkinternals.h"
 #include "gdkfb.h"
+#include "gdkalias.h"
 
 /*********************************************
  * Functions for maintaining the event queue *
@@ -222,12 +223,7 @@ gdk_screen_get_setting (GdkScreen   *screen,
   return FALSE;
 }
 
-void
-gdk_display_sync (GdkDisplay *display)
-{
-}
 
-void
-gdk_display_flush (GdkDisplay * display)
-{
-}
+#define __GDK_EVENTS_FB_C__
+#include "gdkaliasdef.c"
+

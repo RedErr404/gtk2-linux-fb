@@ -36,6 +36,7 @@
 #include <gdk/gdk.h>
 #include "gdkfb.h"
 #include "gdkregion-generic.h"
+#include "gdkalias.h"
 #include <linux/fb.h>
 #include <stdio.h>
 #include <ft2build.h>

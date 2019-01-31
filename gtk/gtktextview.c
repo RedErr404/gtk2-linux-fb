@@ -666,7 +666,7 @@ gtk_text_view_class_init (GtkTextViewClass *klass)
    *
    */
   signals[MOVE_CURSOR] = 
-    g_signal_new (I_("move_cursor"),
+    g_signal_new (g_intern_static_string("move_cursor"),
 		  G_OBJECT_CLASS_TYPE (gobject_class), 
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION, 
 		  G_STRUCT_OFFSET (GtkTextViewClass, move_cursor),
@@ -678,7 +678,7 @@ gtk_text_view_class_init (GtkTextViewClass *klass)
 		  G_TYPE_BOOLEAN);
 
   signals[PAGE_HORIZONTALLY] =
-    g_signal_new (I_("page_horizontally"),
+    g_signal_new (g_intern_static_string("page_horizontally"),
 		  G_OBJECT_CLASS_TYPE (gobject_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTextViewClass, page_horizontally),
@@ -689,7 +689,7 @@ gtk_text_view_class_init (GtkTextViewClass *klass)
 		  G_TYPE_BOOLEAN);
   
   signals[MOVE_VIEWPORT] =
-    _gtk_binding_signal_new (I_("move_viewport"),
+    _gtk_binding_signal_new (g_intern_static_string("move_viewport"),
 			     G_OBJECT_CLASS_TYPE (gobject_class),
 			     G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			     G_CALLBACK (gtk_text_view_move_viewport),
@@ -700,7 +700,7 @@ gtk_text_view_class_init (GtkTextViewClass *klass)
 			     G_TYPE_INT);
 
   signals[SET_ANCHOR] =
-    g_signal_new (I_("set_anchor"),
+    g_signal_new (g_intern_static_string("set_anchor"),
 		  G_OBJECT_CLASS_TYPE (gobject_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTextViewClass, set_anchor),
@@ -709,7 +709,7 @@ gtk_text_view_class_init (GtkTextViewClass *klass)
 		  G_TYPE_NONE, 0);
 
   signals[INSERT_AT_CURSOR] =
-    g_signal_new (I_("insert_at_cursor"),
+    g_signal_new (g_intern_static_string("insert_at_cursor"),
 		  G_OBJECT_CLASS_TYPE (gobject_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTextViewClass, insert_at_cursor),
@@ -719,7 +719,7 @@ gtk_text_view_class_init (GtkTextViewClass *klass)
 		  G_TYPE_STRING);
 
   signals[DELETE_FROM_CURSOR] =
-    g_signal_new (I_("delete_from_cursor"),
+    g_signal_new (g_intern_static_string("delete_from_cursor"),
 		  G_OBJECT_CLASS_TYPE (gobject_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTextViewClass, delete_from_cursor),
@@ -730,7 +730,7 @@ gtk_text_view_class_init (GtkTextViewClass *klass)
 		  G_TYPE_INT);
 
   signals[BACKSPACE] =
-    g_signal_new (I_("backspace"),
+    g_signal_new (g_intern_static_string("backspace"),
 		  G_OBJECT_CLASS_TYPE (gobject_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTextViewClass, backspace),
@@ -739,7 +739,7 @@ gtk_text_view_class_init (GtkTextViewClass *klass)
 		  G_TYPE_NONE, 0);
 
   signals[CUT_CLIPBOARD] =
-    g_signal_new (I_("cut_clipboard"),
+    g_signal_new (g_intern_static_string("cut_clipboard"),
 		  G_OBJECT_CLASS_TYPE (gobject_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTextViewClass, cut_clipboard),
@@ -748,7 +748,7 @@ gtk_text_view_class_init (GtkTextViewClass *klass)
 		  G_TYPE_NONE, 0);
 
   signals[COPY_CLIPBOARD] =
-    g_signal_new (I_("copy_clipboard"),
+    g_signal_new (g_intern_static_string("copy_clipboard"),
 		  G_OBJECT_CLASS_TYPE (gobject_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTextViewClass, copy_clipboard),
@@ -757,7 +757,7 @@ gtk_text_view_class_init (GtkTextViewClass *klass)
 		  G_TYPE_NONE, 0);
 
   signals[PASTE_CLIPBOARD] =
-    g_signal_new (I_("paste_clipboard"),
+    g_signal_new (g_intern_static_string("paste_clipboard"),
 		  G_OBJECT_CLASS_TYPE (gobject_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTextViewClass, paste_clipboard),
@@ -766,7 +766,7 @@ gtk_text_view_class_init (GtkTextViewClass *klass)
 		  G_TYPE_NONE, 0);
 
   signals[TOGGLE_OVERWRITE] =
-    g_signal_new (I_("toggle_overwrite"),
+    g_signal_new (g_intern_static_string("toggle_overwrite"),
 		  G_OBJECT_CLASS_TYPE (gobject_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTextViewClass, toggle_overwrite),
@@ -775,7 +775,7 @@ gtk_text_view_class_init (GtkTextViewClass *klass)
 		  G_TYPE_NONE, 0);
 
   signals[MOVE_FOCUS] =
-    g_signal_new (I_("move_focus"),
+    g_signal_new (g_intern_static_string("move_focus"),
 		  G_OBJECT_CLASS_TYPE (gobject_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTextViewClass, move_focus),
@@ -785,7 +785,7 @@ gtk_text_view_class_init (GtkTextViewClass *klass)
 		  GTK_TYPE_DIRECTION_TYPE);
   
   signals[SET_SCROLL_ADJUSTMENTS] =
-    g_signal_new (I_("set_scroll_adjustments"),
+    g_signal_new (g_intern_static_string("set_scroll_adjustments"),
 		  G_OBJECT_CLASS_TYPE (gobject_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkTextViewClass, set_scroll_adjustments),
@@ -797,7 +797,7 @@ gtk_text_view_class_init (GtkTextViewClass *klass)
   widget_class->set_scroll_adjustments_signal = signals[SET_SCROLL_ADJUSTMENTS];
 
   signals[POPULATE_POPUP] =
-    g_signal_new (I_("populate_popup"),
+    g_signal_new (g_intern_static_string("populate_popup"),
 		  G_OBJECT_CLASS_TYPE (gobject_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkTextViewClass, populate_popup),
@@ -807,7 +807,7 @@ gtk_text_view_class_init (GtkTextViewClass *klass)
 		  GTK_TYPE_MENU);
   
   signals[SELECT_ALL] =
-    _gtk_binding_signal_new (I_("select_all"),
+    _gtk_binding_signal_new (g_intern_static_string("select_all"),
 			     G_OBJECT_CLASS_TYPE (object_class),
 			     G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			     G_CALLBACK (gtk_text_view_select_all),
@@ -7035,7 +7035,7 @@ append_action_signal (GtkTextView  *text_view,
 {
   GtkWidget *menuitem = gtk_image_menu_item_new_from_stock (stock_id, NULL);
 
-  g_object_set_data (G_OBJECT (menuitem), I_("gtk-signal"), (char *)signal);
+  g_object_set_data (G_OBJECT (menuitem), g_intern_static_string("gtk-signal"), (char *)signal);
   g_signal_connect (menuitem, "activate",
 		    G_CALLBACK (activate_cb), text_view);
 
@@ -8250,7 +8250,7 @@ text_view_child_new_anchored (GtkWidget          *child,
   g_object_ref (vc->anchor);
 
   g_object_set_data (G_OBJECT (child),
-                     I_("gtk-text-view-child"),
+                     g_intern_static_string("gtk-text-view-child"),
                      vc);
 
   gtk_text_child_anchor_register_child (anchor, child, layout);
@@ -8281,7 +8281,7 @@ text_view_child_new_window (GtkWidget          *child,
   vc->y = y;
 
   g_object_set_data (G_OBJECT (child),
-                     I_("gtk-text-view-child"),
+                     g_intern_static_string("gtk-text-view-child"),
                      vc);
   
   return vc;
@@ -8291,7 +8291,7 @@ static void
 text_view_child_free (GtkTextViewChild *child)
 {
   g_object_set_data (G_OBJECT (child->widget),
-                     I_("gtk-text-view-child"), NULL);
+                     g_intern_static_string("gtk-text-view-child"), NULL);
 
   if (child->anchor)
     {

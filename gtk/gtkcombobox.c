@@ -499,7 +499,7 @@ gtk_combo_box_class_init (GtkComboBoxClass *klass)
    * Since: 2.4
    */
   combo_box_signals[CHANGED] =
-    g_signal_new (I_("changed"),
+    g_signal_new (g_intern_static_string("changed"),
                   G_OBJECT_CLASS_TYPE (klass),
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (GtkComboBoxClass, changed),
@@ -2623,7 +2623,7 @@ gtk_combo_box_menu_fill_level (GtkComboBox *combo_box,
 	  item = gtk_separator_menu_item_new ();
 	  path = gtk_tree_model_get_path (model, &iter);
 	  g_object_set_data_full (G_OBJECT (item),
-				  I_("gtk-combo-box-item-path"),
+				  g_intern_static_string("gtk-combo-box-item-path"),
 				  gtk_tree_row_reference_new (model, path),
 				  (GDestroyNotify)gtk_tree_row_reference_free);
 	  gtk_tree_path_free (path);
@@ -3146,7 +3146,7 @@ gtk_combo_box_menu_row_inserted (GtkTreeModel *model,
     {
       item = gtk_separator_menu_item_new ();
       g_object_set_data_full (G_OBJECT (item),
-			      I_("gtk-combo-box-item-path"),
+			      g_intern_static_string("gtk-combo-box-item-path"),
 			      gtk_tree_row_reference_new (model, path),
 			      (GDestroyNotify)gtk_tree_row_reference_free);
     }

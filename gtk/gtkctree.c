@@ -343,7 +343,7 @@ gtk_ctree_get_type (void)
         (GtkClassInitFunc) NULL,
       };
 
-      I_("GtkCTree");
+      g_intern_static_string("GtkCTree");
       ctree_type = gtk_type_unique (GTK_TYPE_CLIST, &ctree_info);
     }
 
@@ -436,7 +436,7 @@ gtk_ctree_class_init (GtkCTreeClass *klass)
 			   ARG_EXPANDER_STYLE);
 
   ctree_signals[TREE_SELECT_ROW] =
-    gtk_signal_new (I_("tree_select_row"),
+    gtk_signal_new (g_intern_static_string("tree_select_row"),
 		    GTK_RUN_FIRST,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkCTreeClass, tree_select_row),
@@ -445,7 +445,7 @@ gtk_ctree_class_init (GtkCTreeClass *klass)
 		    GTK_TYPE_CTREE_NODE,
 		    GTK_TYPE_INT);
   ctree_signals[TREE_UNSELECT_ROW] =
-    gtk_signal_new (I_("tree_unselect_row"),
+    gtk_signal_new (g_intern_static_string("tree_unselect_row"),
 		    GTK_RUN_FIRST,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkCTreeClass, tree_unselect_row),
@@ -454,7 +454,7 @@ gtk_ctree_class_init (GtkCTreeClass *klass)
 		    GTK_TYPE_CTREE_NODE,
 		    GTK_TYPE_INT);
   ctree_signals[TREE_EXPAND] =
-    gtk_signal_new (I_("tree_expand"),
+    gtk_signal_new (g_intern_static_string("tree_expand"),
 		    GTK_RUN_LAST,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkCTreeClass, tree_expand),
@@ -462,7 +462,7 @@ gtk_ctree_class_init (GtkCTreeClass *klass)
 		    GTK_TYPE_NONE, 1,
 		    GTK_TYPE_CTREE_NODE);
   ctree_signals[TREE_COLLAPSE] =
-    gtk_signal_new (I_("tree_collapse"),
+    gtk_signal_new (g_intern_static_string("tree_collapse"),
 		    GTK_RUN_LAST,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkCTreeClass, tree_collapse),
@@ -470,7 +470,7 @@ gtk_ctree_class_init (GtkCTreeClass *klass)
 		    GTK_TYPE_NONE, 1,
 		    GTK_TYPE_CTREE_NODE);
   ctree_signals[TREE_MOVE] =
-    gtk_signal_new (I_("tree_move"),
+    gtk_signal_new (g_intern_static_string("tree_move"),
 		    GTK_RUN_LAST,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkCTreeClass, tree_move),
@@ -480,7 +480,7 @@ gtk_ctree_class_init (GtkCTreeClass *klass)
 		    GTK_TYPE_CTREE_NODE,
 		    GTK_TYPE_CTREE_NODE);
   ctree_signals[CHANGE_FOCUS_ROW_EXPANSION] =
-    gtk_signal_new (I_("change_focus_row_expansion"),
+    gtk_signal_new (g_intern_static_string("change_focus_row_expansion"),
 		    GTK_RUN_LAST | GTK_RUN_ACTION,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkCTreeClass,

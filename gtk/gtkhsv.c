@@ -149,7 +149,7 @@ gtk_hsv_class_init (GtkHSVClass *class)
   hsv_class->move = gtk_hsv_move;
   
   hsv_signals[CHANGED] =
-    g_signal_new (I_("changed"),
+    g_signal_new (g_intern_static_string("changed"),
 		  G_OBJECT_CLASS_TYPE (object_class),
 		  G_SIGNAL_RUN_FIRST,
 		  G_STRUCT_OFFSET (GtkHSVClass, changed),
@@ -158,7 +158,7 @@ gtk_hsv_class_init (GtkHSVClass *class)
 		  G_TYPE_NONE, 0);
 
   hsv_signals[MOVE] =
-    g_signal_new (I_("move"),
+    g_signal_new (g_intern_static_string("move"),
 		  G_OBJECT_CLASS_TYPE (object_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkHSVClass, move),

@@ -261,7 +261,7 @@ gtk_recent_manager_class_init (GtkRecentManagerClass *klass)
    * Since: 2.10
    */
   signal_changed =
-    g_signal_new (I_("changed"),
+    g_signal_new (g_intern_static_string("changed"),
 		  G_TYPE_FROM_CLASS (klass),
 		  G_SIGNAL_RUN_FIRST,
 		  G_STRUCT_OFFSET (GtkRecentManagerClass, changed),
@@ -686,7 +686,7 @@ gtk_recent_manager_get_for_screen (GdkScreen *screen)
       priv = manager->priv;
       priv->is_screen_singleton = TRUE;
 
-      g_object_set_data (G_OBJECT (screen), I_("gtk-recent-manager-default"), manager);
+      g_object_set_data (G_OBJECT (screen), g_intern_static_string("gtk-recent-manager-default"), manager);
     }
 
   return manager;
@@ -703,7 +703,7 @@ display_closed (GdkDisplay       *display,
 
   if (was_screen_singleton)
     {
-      g_object_set_data (G_OBJECT (screen), I_("gtk-recent-manager-default"), NULL);
+      g_object_set_data (G_OBJECT (screen), g_intern_static_string("gtk-recent-manager-default"), NULL);
       priv->is_screen_singleton = FALSE;
     }
 

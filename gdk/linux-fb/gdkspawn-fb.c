@@ -22,6 +22,7 @@
 #include <config.h>
 
 #include "gdkspawn.h"
+#include "gdkalias.h"
 
 #include <glib.h>
 #include <gdk/gdk.h>
@@ -102,3 +103,6 @@ gdk_spawn_command_line_on_screen (GdkScreen    *screen,
 
   return retval;
 }
+
+#define __GDK_SPAWN_FB_C__
+#include "gdkaliasdef.c"

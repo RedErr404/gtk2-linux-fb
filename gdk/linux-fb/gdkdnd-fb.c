@@ -30,6 +30,7 @@
 #include "gdkproperty.h"
 #include "gdkinternals.h"
 #include "gdkprivate-fb.h"
+#include "gdkalias.h"
 
 typedef struct _GdkDragContextPrivate GdkDragContextPrivate;
 
@@ -725,3 +726,5 @@ gdk_drag_get_selection (GdkDragContext *context)
     return GDK_NONE;
 }
 
+#define __GDK_DND_FB_C__
+#include "gdkaliasdef.c"

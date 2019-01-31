@@ -488,7 +488,7 @@ _gtk_file_chooser_default_class_init (GtkFileChooserDefaultClass *class)
   widget_class->size_allocate = gtk_file_chooser_default_size_allocate;
 
   signals[LOCATION_POPUP] =
-    _gtk_binding_signal_new (I_("location-popup"),
+    _gtk_binding_signal_new (g_intern_static_string("location-popup"),
 			     G_OBJECT_CLASS_TYPE (class),
 			     G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
 			     G_CALLBACK (location_popup_handler),
@@ -504,7 +504,7 @@ _gtk_file_chooser_default_class_init (GtkFileChooserDefaultClass *class)
 			     _gtk_marshal_VOID__VOID,
 			     G_TYPE_NONE, 0);
   signals[LOCATION_TOGGLE_POPUP] =
-    _gtk_binding_signal_new (I_("location-toggle-popup"),
+    _gtk_binding_signal_new (g_intern_static_string("location-toggle-popup"),
 			     G_OBJECT_CLASS_TYPE (class),
 			     G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
 			     G_CALLBACK (location_toggle_popup_handler),
@@ -512,7 +512,7 @@ _gtk_file_chooser_default_class_init (GtkFileChooserDefaultClass *class)
 			     _gtk_marshal_VOID__VOID,
 			     G_TYPE_NONE, 0);
   signals[UP_FOLDER] =
-    _gtk_binding_signal_new (I_("up-folder"),
+    _gtk_binding_signal_new (g_intern_static_string("up-folder"),
 			     G_OBJECT_CLASS_TYPE (class),
 			     G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
 			     G_CALLBACK (up_folder_handler),
@@ -520,7 +520,7 @@ _gtk_file_chooser_default_class_init (GtkFileChooserDefaultClass *class)
 			     _gtk_marshal_VOID__VOID,
 			     G_TYPE_NONE, 0);
   signals[DOWN_FOLDER] =
-    _gtk_binding_signal_new (I_("down-folder"),
+    _gtk_binding_signal_new (g_intern_static_string("down-folder"),
 			     G_OBJECT_CLASS_TYPE (class),
 			     G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
 			     G_CALLBACK (down_folder_handler),
@@ -528,7 +528,7 @@ _gtk_file_chooser_default_class_init (GtkFileChooserDefaultClass *class)
 			     _gtk_marshal_VOID__VOID,
 			     G_TYPE_NONE, 0);
   signals[HOME_FOLDER] =
-    _gtk_binding_signal_new (I_("home-folder"),
+    _gtk_binding_signal_new (g_intern_static_string("home-folder"),
 			     G_OBJECT_CLASS_TYPE (class),
 			     G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
 			     G_CALLBACK (home_folder_handler),
@@ -536,7 +536,7 @@ _gtk_file_chooser_default_class_init (GtkFileChooserDefaultClass *class)
 			     _gtk_marshal_VOID__VOID,
 			     G_TYPE_NONE, 0);
   signals[DESKTOP_FOLDER] =
-    _gtk_binding_signal_new (I_("desktop-folder"),
+    _gtk_binding_signal_new (g_intern_static_string("desktop-folder"),
 			     G_OBJECT_CLASS_TYPE (class),
 			     G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
 			     G_CALLBACK (desktop_folder_handler),
@@ -544,7 +544,7 @@ _gtk_file_chooser_default_class_init (GtkFileChooserDefaultClass *class)
 			     _gtk_marshal_VOID__VOID,
 			     G_TYPE_NONE, 0);
   signals[QUICK_BOOKMARK] =
-    _gtk_binding_signal_new (I_("quick-bookmark"),
+    _gtk_binding_signal_new (g_intern_static_string("quick-bookmark"),
 			     G_OBJECT_CLASS_TYPE (class),
 			     G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
 			     G_CALLBACK (quick_bookmark_handler),
@@ -4081,7 +4081,7 @@ create_file_list (GtkFileChooserDefault *impl)
 #ifdef PROFILE_FILE_CHOOSER
   g_object_set_data (G_OBJECT (impl->browse_files_tree_view), "fmq-name", "file_list");
 #endif
-  g_object_set_data (G_OBJECT (impl->browse_files_tree_view), I_("GtkFileChooserDefault"), impl);
+  g_object_set_data (G_OBJECT (impl->browse_files_tree_view), g_intern_static_string("GtkFileChooserDefault"), impl);
   atk_object_set_name (gtk_widget_get_accessible (impl->browse_files_tree_view), _("Files"));
 
   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (impl->browse_files_tree_view), TRUE);

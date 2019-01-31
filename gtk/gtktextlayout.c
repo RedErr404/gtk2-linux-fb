@@ -175,7 +175,7 @@ gtk_text_layout_class_init (GtkTextLayoutClass *klass)
   klass->free_line_data = gtk_text_layout_real_free_line_data;
 
   signals[INVALIDATED] =
-    g_signal_new (I_("invalidated"),
+    g_signal_new (g_intern_static_string("invalidated"),
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (GtkTextLayoutClass, invalidated),
@@ -185,7 +185,7 @@ gtk_text_layout_class_init (GtkTextLayoutClass *klass)
                   0);
 
   signals[CHANGED] =
-    g_signal_new (I_("changed"),
+    g_signal_new (g_intern_static_string("changed"),
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (GtkTextLayoutClass, changed),
@@ -198,7 +198,7 @@ gtk_text_layout_class_init (GtkTextLayoutClass *klass)
                   G_TYPE_INT);
 
   signals[ALLOCATE_CHILD] =
-    g_signal_new (I_("allocate_child"),
+    g_signal_new (g_intern_static_string("allocate_child"),
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (GtkTextLayoutClass, allocate_child),

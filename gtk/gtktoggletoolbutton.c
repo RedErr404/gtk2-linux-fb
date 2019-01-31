@@ -110,7 +110,7 @@ gtk_toggle_tool_button_class_init (GtkToggleToolButtonClass *klass)
  * Emitted whenever the toggle tool button changes state.
  **/
   toggle_signals[TOGGLED] =
-    g_signal_new (I_("toggled"),
+    g_signal_new (g_intern_static_string("toggled"),
 		  G_OBJECT_CLASS_TYPE (klass),
 		  G_SIGNAL_RUN_FIRST,
 		  G_STRUCT_OFFSET (GtkToggleToolButtonClass, toggled),

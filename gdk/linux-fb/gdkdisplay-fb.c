@@ -27,6 +27,7 @@
 #include <config.h>
 #include "gdk.h"
 #include "gdkprivate-fb.h"
+#include "gdkalias.h"
 
 GdkDisplay *
 gdk_display_open (const gchar *display_name)
@@ -76,3 +77,87 @@ gdk_display_get_default_screen (GdkDisplay *display)
 {
   return _gdk_screen;
 }
+
+void
+gdk_display_sync (GdkDisplay *display)
+{
+}
+
+void
+gdk_display_flush (GdkDisplay * display)
+{
+}
+
+gboolean
+gdk_display_supports_cursor_alpha (GdkDisplay *display)
+{
+  g_return_val_if_fail (GDK_IS_DISPLAY (display), FALSE);
+  return TRUE;
+}
+
+gboolean
+gdk_display_supports_cursor_color (GdkDisplay *display)
+{
+  g_return_val_if_fail (GDK_IS_DISPLAY (display), FALSE);
+  return TRUE;
+}
+
+gboolean
+gdk_display_supports_clipboard_persistence (GdkDisplay *display)
+{
+  g_warning("gdk_display_supports_clipboard_persistence Unimplemented function \n");
+  return FALSE;
+}
+
+void
+gdk_display_get_maximal_cursor_size (GdkDisplay *display,
+                                     guint       *width,
+                                     guint       *height)
+{
+  g_return_if_fail (GDK_IS_DISPLAY (display));
+
+  /* Cursor sizes in DirectFB can be large (4095x4095), but we limit this to
+     128x128 for max compatibility with the x11 backend. */
+  *width  = 128;
+  *height = 128;
+}
+
+gboolean
+gdk_display_supports_selection_notification (GdkDisplay *display)
+{
+  return FALSE;
+}
+
+gboolean gdk_display_request_selection_notification  (GdkDisplay *display,
+                                                      GdkAtom     selection)
+
+{
+  g_warning("gdk_display_request_selection_notification Unimplemented function \n");
+  return FALSE;
+}
+
+void
+gdk_display_warp_pointer (GdkDisplay *display,
+                          GdkScreen  *screen,
+                          gint        x,
+                          gint        y)
+{
+  g_warning ("gdk_display_warp_pointer() not implemented.\n");
+}
+
+void
+gdk_display_store_clipboard  (GdkDisplay *display,
+						     GdkWindow  *clipboard_window,
+						     guint32     time_,
+						     GdkAtom    *targets,
+						     gint        n_targets)
+{
+
+  g_warning("gdk_display_store_clipboard Unimplemented function \n");
+
+}
+
+
+#define __GDK_DISPLAY_FB_C__
+#include "gdkaliasdef.c"
+

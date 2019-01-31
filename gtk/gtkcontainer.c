@@ -135,7 +135,7 @@ gtk_container_get_type (void)
       };
 
       container_type =
-	g_type_register_static (GTK_TYPE_WIDGET, I_("GtkContainer"), 
+	g_type_register_static (GTK_TYPE_WIDGET, g_intern_static_string("GtkContainer"), 
 				&container_info, G_TYPE_FLAG_ABSTRACT);
     }
 
@@ -224,7 +224,7 @@ gtk_container_class_init (GtkContainerClass *class)
                                                       GTK_TYPE_WIDGET,
 						      GTK_PARAM_WRITABLE));
   container_signals[ADD] =
-    g_signal_new (I_("add"),
+    g_signal_new (g_intern_static_string("add"),
 		  G_OBJECT_CLASS_TYPE (object_class),
 		  G_SIGNAL_RUN_FIRST,
 		  G_STRUCT_OFFSET (GtkContainerClass, add),
@@ -233,7 +233,7 @@ gtk_container_class_init (GtkContainerClass *class)
 		  G_TYPE_NONE, 1,
 		  GTK_TYPE_WIDGET);
   container_signals[REMOVE] =
-    g_signal_new (I_("remove"),
+    g_signal_new (g_intern_static_string("remove"),
 		  G_OBJECT_CLASS_TYPE (object_class),
 		  G_SIGNAL_RUN_FIRST,
 		  G_STRUCT_OFFSET (GtkContainerClass, remove),
@@ -242,7 +242,7 @@ gtk_container_class_init (GtkContainerClass *class)
 		  G_TYPE_NONE, 1,
 		  GTK_TYPE_WIDGET);
   container_signals[CHECK_RESIZE] =
-    g_signal_new (I_("check_resize"),
+    g_signal_new (g_intern_static_string("check_resize"),
 		  G_OBJECT_CLASS_TYPE (object_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkContainerClass, check_resize),
@@ -250,7 +250,7 @@ gtk_container_class_init (GtkContainerClass *class)
 		  _gtk_marshal_VOID__VOID,
 		  G_TYPE_NONE, 0);
   container_signals[SET_FOCUS_CHILD] =
-    g_signal_new (I_("set-focus-child"),
+    g_signal_new (g_intern_static_string("set-focus-child"),
 		  G_OBJECT_CLASS_TYPE (object_class),
 		  G_SIGNAL_RUN_FIRST,
 		  G_STRUCT_OFFSET (GtkContainerClass, set_focus_child),
@@ -2071,7 +2071,7 @@ chain_widget_destroyed (GtkWidget *widget,
                                         user_data);
   
   g_object_set_data (G_OBJECT (container),
-                     I_("gtk-container-focus-chain"),
+                     g_intern_static_string("gtk-container-focus-chain"),
                      chain);  
 }
 
@@ -2128,7 +2128,7 @@ gtk_container_set_focus_chain (GtkContainer *container,
   chain = g_list_reverse (chain);
   
   g_object_set_data (G_OBJECT (container),
-                     I_("gtk-container-focus-chain"),
+                     g_intern_static_string("gtk-container-focus-chain"),
                      chain);
 }
 
@@ -2188,7 +2188,7 @@ gtk_container_unset_focus_chain (GtkContainer  *container)
       container->has_focus_chain = FALSE;
       
       g_object_set_data (G_OBJECT (container), 
-                         I_("gtk-container-focus-chain"),
+                         g_intern_static_string("gtk-container-focus-chain"),
                          NULL);
 
       tmp_list = chain;

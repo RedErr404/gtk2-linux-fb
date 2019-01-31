@@ -167,7 +167,7 @@ gtk_print_job_class_init (GtkPrintJobClass *class)
    * Since: 2.10
    */
   signals[STATUS_CHANGED] =
-    g_signal_new (I_("status-changed"),
+    g_signal_new (g_intern_static_string("status-changed"),
 		  G_TYPE_FROM_CLASS (class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkPrintJobClass, status_changed),
@@ -701,7 +701,7 @@ gtk_print_capabilities_get_type (void)
         { 0, NULL, NULL }
       };
 
-      etype = g_flags_register_static (I_("GtkPrintCapabilities"), values);
+      etype = g_flags_register_static (g_intern_static_string("GtkPrintCapabilities"), values);
     }
 
   return etype;

@@ -31,6 +31,7 @@
 #include "gdkinput.h"
 #include "gdkevents.h"
 #include "gdkfb.h"
+#include "gdkalias.h"
 
 typedef struct _GdkAxisInfo    GdkAxisInfo;
 typedef struct _GdkInputVTable GdkInputVTable;

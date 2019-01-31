@@ -34,6 +34,7 @@
 #include "gdkpixmap.h"
 #include "gdkfb.h"
 #include "gdkprivate-fb.h"
+#include "gdkalias.h"
 
 typedef struct
 {
@@ -212,3 +213,5 @@ gdk_pixmap_lookup (GdkNativeWindow anid)
   return (GdkPixmap*) (anid);
 }
 
+#define __GDK_PIXMAP_FB_C__
+#include  "gdkaliasdef.c"

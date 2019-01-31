@@ -31,7 +31,7 @@
 #include "gdkselection.h"
 #include "gdkprivate.h"
 #include "gdkprivate-fb.h"
-
+#include "gdkalias.h"
 
 typedef struct _OwnerInfo OwnerInfo;
 
@@ -429,3 +429,7 @@ gdk_text_property_to_utf8_list_for_display (GdkDisplay    *display,
       return count;
     }
 }
+
+#define __GDK_SELECTION_FB_C__
+#include "gdkaliasdef.c"
+

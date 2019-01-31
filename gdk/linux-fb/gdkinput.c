@@ -31,6 +31,7 @@
 #include "gdkinput.h"
 #include "gdkprivate.h"
 #include "gdkinputprivate.h"
+#include "gdkalias.h"
 
 static GdkDeviceAxis gdk_input_core_axes[] = {
   { GDK_AXIS_X, 0, 0 },
@@ -385,3 +386,6 @@ gdk_device_get_axis (GdkDevice *device, gdouble *axes, GdkAxisUse use, gdouble *
   
   return FALSE;
 }
+
+#define __GDK_INPUT_FB_C__
+#include "gdkaliasdef.c"

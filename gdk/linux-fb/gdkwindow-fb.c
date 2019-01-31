@@ -31,6 +31,7 @@
 #include "gdkinputprivate.h"
 #include "gdkprivate-fb.h"
 #include "gdkinternals.h"
+#include "gdkalias.h"
 
 #include <limits.h>
 
@@ -2378,3 +2379,36 @@ void
 gdk_window_configure_finished (GdkWindow *window)
 {
 }
+
+void
+gdk_window_input_shape_combine_mask   (GdkWindow *window,
+					    GdkBitmap *mask,
+					    gint       x,
+					    gint       y)
+{
+
+}
+
+void
+gdk_window_set_urgency_hint      (GdkWindow *window,
+				       gboolean   urgent)
+{
+  g_return_if_fail (GDK_IS_WINDOW (window));
+  g_return_if_fail (GDK_WINDOW_TYPE (window) != GDK_WINDOW_CHILD);
+
+  if (GDK_WINDOW_DESTROYED (window))
+    return;
+
+  g_warning ("gdk_window_set_urgency_hint() not implemented.\n");
+
+}
+
+void
+_gdk_windowing_window_destroy_foreign (GdkWindow *window)
+{
+  
+}
+
+
+#define __GDK_WINDOW_FB_C__
+#include "gdkaliasdef.c"

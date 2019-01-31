@@ -171,7 +171,7 @@ gtk_tree_view_column_class_init (GtkTreeViewColumnClass *class)
   object_class->get_property = gtk_tree_view_column_get_property;
   
   tree_column_signals[CLICKED] =
-    g_signal_new (I_("clicked"),
+    g_signal_new (g_intern_static_string("clicked"),
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (GtkTreeViewColumnClass, clicked),

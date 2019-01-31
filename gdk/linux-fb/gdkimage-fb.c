@@ -34,6 +34,7 @@
 #include "gdkimage.h"
 #include "gdkprivate.h"
 #include "gdkprivate-fb.h"
+#include "gdkalias.h"
 
 static gpointer parent_class = NULL;
 
@@ -353,3 +354,5 @@ _gdk_windowing_get_bits_for_depth (GdkDisplay *display,
   return 0;	
 }
 
+#define __GDK_IMAGE_FB_C__
+#include "gdkaliasdef.c"

@@ -121,7 +121,7 @@ gtk_toggle_action_class_init (GtkToggleActionClass *klass)
                                                          GTK_PARAM_READWRITE));
 
   action_signals[TOGGLED] =
-    g_signal_new (I_("toggled"),
+    g_signal_new (g_intern_static_string("toggled"),
                   G_OBJECT_CLASS_TYPE (klass),
                   G_SIGNAL_RUN_FIRST,
                   G_STRUCT_OFFSET (GtkToggleActionClass, toggled),

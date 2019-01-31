@@ -105,7 +105,7 @@ gtk_plug_class_init (GtkPlugClass *class)
   window_class->keys_changed = gtk_plug_keys_changed;
 
   plug_signals[EMBEDDED] =
-    g_signal_new (I_("embedded"),
+    g_signal_new (g_intern_static_string("embedded"),
 		  G_OBJECT_CLASS_TYPE (class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkPlugClass, embedded),

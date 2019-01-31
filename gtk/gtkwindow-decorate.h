@@ -24,6 +24,17 @@
 #ifndef __GTK_WINDOW_DECORATE_H__
 #define __GTK_WINDOW_DECORATE_H__
 
+#include <gtk/gtkwindow.h>
+
+#ifdef DECORATE_WINDOWS
+#include <gdk/gdk.h>
+#include <gdk/linux-fb/gdkfb.h>
+#include <gdk/linux-fb/gdkgc.h>
+#include <gdk/linux-fb/gdkevents.h>
+#include <gdk/linux-fb/gdkdrawable.h>
+#include <gdk/linux-fb/gdkwindow.h>
+#endif
+
 G_BEGIN_DECLS
 
 void gtk_decorated_window_init                 (GtkWindow   *window);

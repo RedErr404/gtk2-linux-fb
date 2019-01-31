@@ -160,7 +160,7 @@ gtk_radio_action_class_init (GtkRadioActionClass *klass)
    * Since: 2.4
    */
   radio_action_signals[CHANGED] =
-    g_signal_new (I_("changed"),
+    g_signal_new (g_intern_static_string("changed"),
 		  G_OBJECT_CLASS_TYPE (klass),
 		  G_SIGNAL_RUN_FIRST | G_SIGNAL_NO_RECURSE,
 		  G_STRUCT_OFFSET (GtkRadioActionClass, changed),  NULL, NULL,

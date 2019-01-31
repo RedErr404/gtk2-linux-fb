@@ -133,7 +133,7 @@ gtk_identifier_get_type (void)
   if (our_type == 0)
     {
       GTypeInfo tinfo = { 0, };
-      our_type = g_type_register_static (G_TYPE_STRING, I_("GtkIdentifier"), &tinfo, 0);
+      our_type = g_type_register_static (G_TYPE_STRING, g_intern_static_string("GtkIdentifier"), &tinfo, 0);
     }
 
   return our_type;

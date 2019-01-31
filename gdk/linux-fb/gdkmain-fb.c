@@ -37,6 +37,9 @@
 #include <string.h>
 #include <sys/vt.h>
 #include <sys/kd.h>
+#include <sys/param.h>
+#include <sys/socket.h>
+#include <sys/un.h>
 #include <errno.h>
 #include <signal.h>
 
@@ -48,6 +51,10 @@
 #include "gdkprivate-fb.h"
 #include "gdkinternals.h"
 #include "gdkfbmanager.h"
+#include "gdkdisplay.h"
+#include "gdkalias.h"
+#include "gdkscreen.h"
+#include "gdkcursor.h"
 
 /* Private variable declarations
  */
@@ -65,7 +72,7 @@ static const int gdk_ndebug_keys = sizeof(gdk_debug_keys)/sizeof(GDebugKey);
 
 #endif /* G_ENABLE_DEBUG */
 
-GOptionEntry _gdk_windowing_args[] = {
+const GOptionEntry _gdk_windowing_args[] = {
   { NULL }
 };
 
@@ -613,7 +620,7 @@ gdk_fb_manager_connect (GdkFBDisplay *display)
   struct ucred credentials;
   struct FBManagerMessage init_msg;
   struct iovec iov;
-  char buf[CMSG_SPACE (sizeof (credentials))];  /* ancillary data buffer */
+  char buf[CMSG_SPACE (sizeof(struct ucred))];  /* ancillary data buffer */
   int *fdptr;
   int res;
 
@@ -1099,7 +1106,7 @@ gdk_fb_pointer_ungrab (guint32 time, gboolean implicit_grab)
  *--------------------------------------------------------------
  */
 
-gint
+gboolean
 gdk_display_pointer_is_grabbed (GdkDisplay *display)
 {
   return _gdk_fb_pointer_grab_window != NULL;
@@ -1158,8 +1165,7 @@ gdk_keyboard_grab (GdkWindow  *window,
  */
 
 void
-gdk_display_keyboard_ungrab (GdkDisplay *display,
-			     guint32     time)
+gdk_display_keyboard_ungrab (GdkDisplay *display, guint32     time_)
 {
   if (_gdk_fb_keyboard_grab_window)
     gdk_window_unref (_gdk_fb_keyboard_grab_window);
@@ -1650,3 +1656,14 @@ void
 gdk_notify_startup_complete (void)
 {
 }
+
+gboolean
+gdk_screen_is_composited (GdkScreen *screen)
+{
+
+
+  return FALSE;
+}
+
+#define __GDK_MAIN_FB_C__
+#include "gdkaliasdef.c"

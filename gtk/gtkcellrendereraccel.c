@@ -174,7 +174,7 @@ gtk_cell_renderer_accel_class_init (GtkCellRendererAccelClass *cell_accel_class)
    *
    * Since: 2.10
    */
-  signals[ACCEL_EDITED] = g_signal_new (I_("accel-edited"),
+  signals[ACCEL_EDITED] = g_signal_new (g_intern_static_string("accel-edited"),
 					GTK_TYPE_CELL_RENDERER_ACCEL,
 					G_SIGNAL_RUN_LAST,
 					G_STRUCT_OFFSET (GtkCellRendererAccelClass, accel_edited),
@@ -195,7 +195,7 @@ gtk_cell_renderer_accel_class_init (GtkCellRendererAccelClass *cell_accel_class)
    *
    * Since: 2.10
    */
-  signals[ACCEL_CLEARED] = g_signal_new (I_("accel-cleared"),
+  signals[ACCEL_CLEARED] = g_signal_new (g_intern_static_string("accel-cleared"),
 					 GTK_TYPE_CELL_RENDERER_ACCEL,
 					 G_SIGNAL_RUN_LAST,
 					 G_STRUCT_OFFSET (GtkCellRendererAccelClass, accel_cleared),

@@ -49,7 +49,7 @@ gtk_print_operation_preview_get_type (void)
       };
 
       print_operation_preview_type =
-	g_type_register_static (G_TYPE_INTERFACE, I_("GtkPrintOperationPreview"),
+	g_type_register_static (G_TYPE_INTERFACE, g_intern_static_string("GtkPrintOperationPreview"),
 				&print_operation_preview_info, 0);
 
       g_type_interface_add_prerequisite (print_operation_preview_type, G_TYPE_OBJECT);
@@ -65,7 +65,7 @@ gtk_print_operation_preview_base_init (gpointer g_iface)
 
   if (!initialized)
     {
-      g_signal_new (I_("ready"),
+      g_signal_new (g_intern_static_string("ready"),
 		    GTK_TYPE_PRINT_OPERATION_PREVIEW,
 		    G_SIGNAL_RUN_LAST,
 		    G_STRUCT_OFFSET (GtkPrintOperationPreviewIface, ready),
@@ -74,7 +74,7 @@ gtk_print_operation_preview_base_init (gpointer g_iface)
 		    G_TYPE_NONE, 1,
 		    GTK_TYPE_PRINT_CONTEXT);
 
-      g_signal_new (I_("got-page-size"),
+      g_signal_new (g_intern_static_string("got-page-size"),
 		    GTK_TYPE_PRINT_OPERATION_PREVIEW,
 		    G_SIGNAL_RUN_LAST,
 		    G_STRUCT_OFFSET (GtkPrintOperationPreviewIface, got_page_size),

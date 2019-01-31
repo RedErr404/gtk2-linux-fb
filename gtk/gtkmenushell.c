@@ -244,7 +244,7 @@ gtk_menu_shell_class_init (GtkMenuShellClass *klass)
   klass->insert = gtk_menu_shell_real_insert;
 
   menu_shell_signals[DEACTIVATE] =
-    g_signal_new (I_("deactivate"),
+    g_signal_new (g_intern_static_string("deactivate"),
 		  G_OBJECT_CLASS_TYPE (object_class),
 		  G_SIGNAL_RUN_FIRST,
 		  G_STRUCT_OFFSET (GtkMenuShellClass, deactivate),
@@ -252,7 +252,7 @@ gtk_menu_shell_class_init (GtkMenuShellClass *klass)
 		  _gtk_marshal_VOID__VOID,
 		  G_TYPE_NONE, 0);
   menu_shell_signals[SELECTION_DONE] =
-    g_signal_new (I_("selection-done"),
+    g_signal_new (g_intern_static_string("selection-done"),
 		  G_OBJECT_CLASS_TYPE (object_class),
 		  G_SIGNAL_RUN_FIRST,
 		  G_STRUCT_OFFSET (GtkMenuShellClass, selection_done),
@@ -260,7 +260,7 @@ gtk_menu_shell_class_init (GtkMenuShellClass *klass)
 		  _gtk_marshal_VOID__VOID,
 		  G_TYPE_NONE, 0);
   menu_shell_signals[MOVE_CURRENT] =
-    g_signal_new (I_("move_current"),
+    g_signal_new (g_intern_static_string("move_current"),
 		  G_OBJECT_CLASS_TYPE (object_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkMenuShellClass, move_current),
@@ -269,7 +269,7 @@ gtk_menu_shell_class_init (GtkMenuShellClass *klass)
 		  G_TYPE_NONE, 1, 
 		  GTK_TYPE_MENU_DIRECTION_TYPE);
   menu_shell_signals[ACTIVATE_CURRENT] =
-    g_signal_new (I_("activate_current"),
+    g_signal_new (g_intern_static_string("activate_current"),
 		  G_OBJECT_CLASS_TYPE (object_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkMenuShellClass, activate_current),
@@ -278,7 +278,7 @@ gtk_menu_shell_class_init (GtkMenuShellClass *klass)
 		  G_TYPE_NONE, 1, 
 		  G_TYPE_BOOLEAN);
   menu_shell_signals[CANCEL] =
-    g_signal_new (I_("cancel"),
+    g_signal_new (g_intern_static_string("cancel"),
 		  G_OBJECT_CLASS_TYPE (object_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkMenuShellClass, cancel),
@@ -286,7 +286,7 @@ gtk_menu_shell_class_init (GtkMenuShellClass *klass)
 		  _gtk_marshal_VOID__VOID,
 		  G_TYPE_NONE, 0);
   menu_shell_signals[CYCLE_FOCUS] =
-    _gtk_binding_signal_new (I_("cycle_focus"),
+    _gtk_binding_signal_new (g_intern_static_string("cycle_focus"),
 			     G_OBJECT_CLASS_TYPE (object_class),
 			     G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			     G_CALLBACK (gtk_real_menu_shell_cycle_focus),

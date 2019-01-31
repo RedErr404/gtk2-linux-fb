@@ -233,7 +233,7 @@ gtk_color_button_class_init (GtkColorButtonClass *klass)
    *
    * Since: 2.4
    */
-  color_button_signals[COLOR_SET] = g_signal_new (I_("color_set"),
+  color_button_signals[COLOR_SET] = g_signal_new (g_intern_static_string("color_set"),
 						  G_TYPE_FROM_CLASS (gobject_class),
 						  G_SIGNAL_RUN_FIRST,
 						  G_STRUCT_OFFSET (GtkColorButtonClass, color_set),

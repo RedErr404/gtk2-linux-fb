@@ -524,7 +524,7 @@ gtk_style_class_init (GtkStyleClass *klass)
    *
    * Since: 2.4
    */
-  realize_signal = g_signal_new (I_("realize"),
+  realize_signal = g_signal_new (g_intern_static_string("realize"),
 				 G_TYPE_FROM_CLASS (object_class),
 				 G_SIGNAL_RUN_FIRST,
 				 G_STRUCT_OFFSET (GtkStyleClass, realize),
@@ -542,7 +542,7 @@ gtk_style_class_init (GtkStyleClass *klass)
    *
    * Since: 2.4
    */
-  unrealize_signal = g_signal_new (I_("unrealize"),
+  unrealize_signal = g_signal_new (g_intern_static_string("unrealize"),
 				   G_TYPE_FROM_CLASS (object_class),
 				   G_SIGNAL_RUN_FIRST,
 				   G_STRUCT_OFFSET (GtkStyleClass, unrealize),
@@ -6428,7 +6428,7 @@ gtk_border_get_type (void)
   static GType our_type = 0;
   
   if (our_type == 0)
-    our_type = g_boxed_type_register_static (I_("GtkBorder"),
+    our_type = g_boxed_type_register_static (g_intern_static_string("GtkBorder"),
 					     (GBoxedCopyFunc) gtk_border_copy,
 					     (GBoxedFreeFunc) gtk_border_free);
 
@@ -6567,7 +6567,7 @@ style_unrealize_cursor_gcs (GtkStyle *style)
 	gtk_gc_release (cursor_info->secondary_gc);
       
       g_free (cursor_info);
-      g_object_set_data (G_OBJECT (style), I_("gtk-style-cursor-info"), NULL);
+      g_object_set_data (G_OBJECT (style), g_intern_static_string("gtk-style-cursor-info"), NULL);
     }
 }
 
@@ -6605,7 +6605,7 @@ get_insertion_cursor_gc (GtkWidget *widget,
   if (!cursor_info)
     {
       cursor_info = g_new (CursorInfo, 1);
-      g_object_set_data (G_OBJECT (widget->style), I_("gtk-style-cursor-info"), cursor_info);
+      g_object_set_data (G_OBJECT (widget->style), g_intern_static_string("gtk-style-cursor-info"), cursor_info);
       cursor_info->primary_gc = NULL;
       cursor_info->secondary_gc = NULL;
       cursor_info->for_type = G_TYPE_INVALID;

@@ -652,7 +652,7 @@ gtk_text_tag_class_init (GtkTextTagClass *klass)
                 P_("Whether this tag affects the paragraph background color"));
   
   signals[EVENT] =
-    g_signal_new (I_("event"),
+    g_signal_new (g_intern_static_string("event"),
                   G_OBJECT_CLASS_TYPE (object_class),
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (GtkTextTagClass, event),
@@ -1953,7 +1953,7 @@ gtk_text_attributes_get_type (void)
   static GType our_type = 0;
   
   if (our_type == 0)
-    our_type = g_boxed_type_register_static (I_("GtkTextAttributes"),
+    our_type = g_boxed_type_register_static (g_intern_static_string("GtkTextAttributes"),
 					     (GBoxedCopyFunc) gtk_text_attributes_ref,
 					     (GBoxedFreeFunc) gtk_text_attributes_unref);
 

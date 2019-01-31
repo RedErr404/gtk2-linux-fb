@@ -32,6 +32,7 @@
 
 #include <pango/pangoft2.h>
 #include <freetype/ftglyph.h>
+#include "gdkalias.h"
 
 #ifndef g_alloca
 #define g_alloca alloca
@@ -451,7 +452,7 @@ gdk_fb_clip_region (GdkDrawable *drawable,
 
   if (gc)
     {
-      GdkRegion *gc = _gdk_gc_get_clip_region (gc);
+      GdkRegion *clip_region = _gdk_gc_get_clip_region (gc);
       
       if (clip_region)
 	{
@@ -1573,3 +1574,8 @@ gdk_draw_rectangle_alpha_libgtk_only (GdkDrawable *drawable,
 {
   return FALSE;
 }
+
+
+#define __GDK_DRAWABLE_FB_C__
+#include "gdkaliasdef.c"
+

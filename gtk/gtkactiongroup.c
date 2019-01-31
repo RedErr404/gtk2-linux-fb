@@ -108,7 +108,7 @@ gtk_action_group_get_type (void)
         (GInstanceInitFunc) gtk_action_group_init,
       };
 
-      type = g_type_register_static (G_TYPE_OBJECT, I_("GtkActionGroup"),
+      type = g_type_register_static (G_TYPE_OBJECT, g_intern_static_string("GtkActionGroup"),
 				     &type_info, 0);
     }
 
@@ -174,7 +174,7 @@ gtk_action_group_class_init (GtkActionGroupClass *klass)
    * Since: 2.4
    */
   action_group_signals[CONNECT_PROXY] =
-    g_signal_new (I_("connect_proxy"),
+    g_signal_new (g_intern_static_string("connect_proxy"),
 		  G_OBJECT_CLASS_TYPE (klass),
 		  0, 0, NULL, NULL,
 		  _gtk_marshal_VOID__OBJECT_OBJECT,
@@ -197,7 +197,7 @@ gtk_action_group_class_init (GtkActionGroupClass *klass)
    * Since: 2.4
    */
   action_group_signals[DISCONNECT_PROXY] =
-    g_signal_new (I_("disconnect_proxy"),
+    g_signal_new (g_intern_static_string("disconnect_proxy"),
 		  G_OBJECT_CLASS_TYPE (klass),
 		  0, 0, NULL, NULL,
 		  _gtk_marshal_VOID__OBJECT_OBJECT,
@@ -218,7 +218,7 @@ gtk_action_group_class_init (GtkActionGroupClass *klass)
    * Since: 2.4
    */
   action_group_signals[PRE_ACTIVATE] =
-    g_signal_new (I_("pre_activate"),
+    g_signal_new (g_intern_static_string("pre_activate"),
 		  G_OBJECT_CLASS_TYPE (klass),
 		  0, 0, NULL, NULL,
 		  _gtk_marshal_VOID__OBJECT,
@@ -239,7 +239,7 @@ gtk_action_group_class_init (GtkActionGroupClass *klass)
    * Since: 2.4
    */
   action_group_signals[POST_ACTIVATE] =
-    g_signal_new (I_("post_activate"),
+    g_signal_new (g_intern_static_string("post_activate"),
 		  G_OBJECT_CLASS_TYPE (klass),
 		  0, 0, NULL, NULL,
 		  _gtk_marshal_VOID__OBJECT,
@@ -253,7 +253,7 @@ gtk_action_group_class_init (GtkActionGroupClass *klass)
 static void 
 remove_action (GtkAction *action) 
 {
-  g_object_set (action, I_("action-group"), NULL, NULL);
+  g_object_set (action, g_intern_static_string("action-group"), NULL, NULL);
   g_object_unref (action);
 }
 
@@ -560,7 +560,7 @@ gtk_action_group_add_action (GtkActionGroup *action_group,
   g_hash_table_insert (action_group->private_data->actions, 
 		       g_strdup (gtk_action_get_name (action)),
                        g_object_ref (action));
-  g_object_set (action, I_("action-group"), action_group, NULL);
+  g_object_set (action, g_intern_static_string("action-group"), action_group, NULL);
 }
 
 /**

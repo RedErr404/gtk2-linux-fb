@@ -281,7 +281,7 @@ gtk_spin_button_class_init (GtkSpinButtonClass *class)
 								     GTK_PARAM_READABLE),
 						  gtk_rc_property_parse_enum);
   spinbutton_signals[INPUT] =
-    g_signal_new (I_("input"),
+    g_signal_new (g_intern_static_string("input"),
 		  G_TYPE_FROM_CLASS (gobject_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkSpinButtonClass, input),
@@ -291,7 +291,7 @@ gtk_spin_button_class_init (GtkSpinButtonClass *class)
 		  G_TYPE_POINTER);
 
   spinbutton_signals[OUTPUT] =
-    g_signal_new (I_("output"),
+    g_signal_new (g_intern_static_string("output"),
 		  G_TYPE_FROM_CLASS (gobject_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkSpinButtonClass, output),
@@ -300,7 +300,7 @@ gtk_spin_button_class_init (GtkSpinButtonClass *class)
 		  G_TYPE_BOOLEAN, 0);
 
   spinbutton_signals[VALUE_CHANGED] =
-    g_signal_new (I_("value_changed"),
+    g_signal_new (g_intern_static_string("value_changed"),
 		  G_TYPE_FROM_CLASS (gobject_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkSpinButtonClass, value_changed),
@@ -318,7 +318,7 @@ gtk_spin_button_class_init (GtkSpinButtonClass *class)
    * Since: 2.10
    */
   spinbutton_signals[WRAPPED] =
-    g_signal_new (I_("wrapped"),
+    g_signal_new (g_intern_static_string("wrapped"),
 		  G_TYPE_FROM_CLASS (gobject_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkSpinButtonClass, wrapped),
@@ -328,7 +328,7 @@ gtk_spin_button_class_init (GtkSpinButtonClass *class)
 
   /* Action signals */
   spinbutton_signals[CHANGE_VALUE] =
-    g_signal_new (I_("change_value"),
+    g_signal_new (g_intern_static_string("change_value"),
                   G_TYPE_FROM_CLASS (gobject_class),
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (GtkSpinButtonClass, change_value),

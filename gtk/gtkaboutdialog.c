@@ -1972,10 +1972,10 @@ add_credits_page (GtkAboutDialog *about,
 		{
 		  q1++;
 		  q0++;
-		  link_type = I_("email");
+		  link_type = g_intern_static_string("email");
 		}
 	      else 
-		link_type = I_("url");
+		link_type = g_intern_static_string("url");
 	      
 	      link = g_strndup (q1, q2 - q1);
 
@@ -2286,7 +2286,7 @@ gtk_show_about_dialog (GtkWindow   *parent,
 	  gtk_window_set_transient_for (GTK_WINDOW (dialog), parent);
 	  gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
 	  g_object_set_data_full (G_OBJECT (parent), 
-                                  I_("gtk-about-dialog"), 
+                                  g_intern_static_string("gtk-about-dialog"), 
 				  dialog, g_object_unref);
 	}
       else 

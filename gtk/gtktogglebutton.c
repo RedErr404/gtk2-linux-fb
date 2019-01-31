@@ -123,7 +123,7 @@ gtk_toggle_button_class_init (GtkToggleButtonClass *class)
 							 GTK_PARAM_READWRITE));
 
   toggle_button_signals[TOGGLED] =
-    g_signal_new (I_("toggled"),
+    g_signal_new (g_intern_static_string("toggled"),
 		  G_OBJECT_CLASS_TYPE (gobject_class),
 		  G_SIGNAL_RUN_FIRST,
 		  G_STRUCT_OFFSET (GtkToggleButtonClass, toggled),

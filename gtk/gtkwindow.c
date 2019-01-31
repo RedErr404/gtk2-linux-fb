@@ -677,7 +677,7 @@ gtk_window_class_init (GtkWindowClass *klass)
 							GTK_PARAM_READWRITE| G_PARAM_CONSTRUCT));
 
   window_signals[SET_FOCUS] =
-    g_signal_new (I_("set_focus"),
+    g_signal_new (g_intern_static_string("set_focus"),
                   G_TYPE_FROM_CLASS (gobject_class),
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (GtkWindowClass, set_focus),
@@ -687,7 +687,7 @@ gtk_window_class_init (GtkWindowClass *klass)
                   GTK_TYPE_WIDGET);
   
   window_signals[FRAME_EVENT] =
-    g_signal_new (I_("frame_event"),
+    g_signal_new (g_intern_static_string("frame_event"),
                   G_TYPE_FROM_CLASS (gobject_class),
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET(GtkWindowClass, frame_event),
@@ -697,7 +697,7 @@ gtk_window_class_init (GtkWindowClass *klass)
                   GDK_TYPE_EVENT);
 
   window_signals[ACTIVATE_FOCUS] =
-    g_signal_new (I_("activate_focus"),
+    g_signal_new (g_intern_static_string("activate_focus"),
                   G_TYPE_FROM_CLASS (gobject_class),
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (GtkWindowClass, activate_focus),
@@ -707,7 +707,7 @@ gtk_window_class_init (GtkWindowClass *klass)
                   0);
 
   window_signals[ACTIVATE_DEFAULT] =
-    g_signal_new (I_("activate_default"),
+    g_signal_new (g_intern_static_string("activate_default"),
                   G_TYPE_FROM_CLASS (gobject_class),
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (GtkWindowClass, activate_default),
@@ -717,7 +717,7 @@ gtk_window_class_init (GtkWindowClass *klass)
                   0);
 
   window_signals[MOVE_FOCUS] =
-    g_signal_new (I_("move_focus"),
+    g_signal_new (g_intern_static_string("move_focus"),
                   G_TYPE_FROM_CLASS (gobject_class),
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (GtkWindowClass, move_focus),
@@ -728,7 +728,7 @@ gtk_window_class_init (GtkWindowClass *klass)
                   GTK_TYPE_DIRECTION_TYPE);
 
   window_signals[KEYS_CHANGED] =
-    g_signal_new (I_("keys_changed"),
+    g_signal_new (g_intern_static_string("keys_changed"),
                   G_TYPE_FROM_CLASS (gobject_class),
                   G_SIGNAL_RUN_FIRST,
                   G_STRUCT_OFFSET (GtkWindowClass, keys_changed),
@@ -7036,7 +7036,7 @@ gtk_window_group_get_type (void)
 	(GInstanceInitFunc) NULL,
       };
 
-      window_group_type = g_type_register_static (G_TYPE_OBJECT, I_("GtkWindowGroup"), 
+      window_group_type = g_type_register_static (G_TYPE_OBJECT, g_intern_static_string("GtkWindowGroup"), 
 						  &window_group_info, 0);
     }
 

@@ -493,7 +493,7 @@ gtk_drag_dest_set (GtkWidget            *widget,
   g_signal_connect (widget, "hierarchy_changed",
 		    G_CALLBACK (gtk_drag_dest_hierarchy_changed), site);
 
-  g_object_set_data_full (G_OBJECT (widget), I_("gtk-drag-dest"),
+  g_object_set_data_full (G_OBJECT (widget), g_intern_static_string("gtk-drag-dest"),
 			  site, gtk_drag_dest_site_destroy);
 }
 
@@ -524,7 +524,7 @@ gtk_drag_dest_unset (GtkWidget *widget)
                                             old_site);
     }
 
-  g_object_set_data (G_OBJECT (widget), I_("gtk-drag-dest"), NULL);
+  g_object_set_data (G_OBJECT (widget), g_intern_static_string("gtk-drag-dest"), NULL);
 }
 
 GtkTargetList*
@@ -1251,7 +1251,7 @@ gtk_drag_source_set (GtkWidget            *widget,
 			site);
       
       g_object_set_data_full (G_OBJECT (widget),
-			      I_("gtk-site-data"), 
+			      g_intern_static_string("gtk-site-data"), 
 			      site, gtk_drag_source_site_destroy);
     }
 
@@ -1284,7 +1284,7 @@ gtk_drag_source_unset (GtkWidget *widget)
       g_signal_handlers_disconnect_by_func (widget,
 					    gtk_drag_source_event_cb,
 					    site);
-      g_object_set_data (G_OBJECT (widget), I_("gtk-site-data"), NULL);
+      g_object_set_data (G_OBJECT (widget), g_intern_static_string("gtk-site-data"), NULL);
     }
 }
 

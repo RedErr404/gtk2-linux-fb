@@ -319,7 +319,7 @@ gtk_action_class_init (GtkActionClass *klass)
    * Since: 2.4
    */
   action_signals[ACTIVATE] =
-    g_signal_new (I_("activate"),
+    g_signal_new (g_intern_static_string("activate"),
 		  G_OBJECT_CLASS_TYPE (klass),
 		  G_SIGNAL_RUN_FIRST | G_SIGNAL_NO_RECURSE,
 		  G_STRUCT_OFFSET (GtkActionClass, activate),  NULL, NULL,

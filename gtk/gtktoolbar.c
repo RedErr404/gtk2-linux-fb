@@ -386,7 +386,7 @@ gtk_toolbar_class_init (GtkToolbarClass *klass)
    * Emitted when the orientation of the toolbar changes.
    */
   toolbar_signals[ORIENTATION_CHANGED] =
-    g_signal_new (I_("orientation-changed"),
+    g_signal_new (g_intern_static_string("orientation-changed"),
 		  G_OBJECT_CLASS_TYPE (klass),
 		  G_SIGNAL_RUN_FIRST,
 		  G_STRUCT_OFFSET (GtkToolbarClass, orientation_changed),
@@ -402,7 +402,7 @@ gtk_toolbar_class_init (GtkToolbarClass *klass)
    * Emitted when the style of the toolbar changes. 
    */
   toolbar_signals[STYLE_CHANGED] =
-    g_signal_new (I_("style-changed"),
+    g_signal_new (g_intern_static_string("style-changed"),
 		  G_OBJECT_CLASS_TYPE (klass),
 		  G_SIGNAL_RUN_FIRST,
 		  G_STRUCT_OFFSET (GtkToolbarClass, style_changed),
@@ -429,7 +429,7 @@ gtk_toolbar_class_init (GtkToolbarClass *klass)
    * Return value: return %TRUE if the signal was handled, %FALSE if not
    */
   toolbar_signals[POPUP_CONTEXT_MENU] =
-    g_signal_new (I_("popup_context_menu"),
+    g_signal_new (g_intern_static_string("popup_context_menu"),
 		  G_OBJECT_CLASS_TYPE (klass),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkToolbarClass, popup_context_menu),
@@ -449,7 +449,7 @@ gtk_toolbar_class_init (GtkToolbarClass *klass)
    * Return value: %TRUE if the signal was handled, %FALSE if not
    */
   toolbar_signals[MOVE_FOCUS] =
-    _gtk_binding_signal_new (I_("move_focus"),
+    _gtk_binding_signal_new (g_intern_static_string("move_focus"),
 			     G_TYPE_FROM_CLASS (klass),
 			     G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			     G_CALLBACK (gtk_toolbar_move_focus),
@@ -468,7 +468,7 @@ gtk_toolbar_class_init (GtkToolbarClass *klass)
    * Return value: %TRUE if the signal was handled, %FALSE if not
    */
   toolbar_signals[FOCUS_HOME_OR_END] =
-    _gtk_binding_signal_new (I_("focus_home_or_end"),
+    _gtk_binding_signal_new (g_intern_static_string("focus_home_or_end"),
 			     G_OBJECT_CLASS_TYPE (klass),
 			     G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			     G_CALLBACK (gtk_toolbar_focus_home_or_end),

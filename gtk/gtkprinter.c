@@ -191,7 +191,7 @@ gtk_printer_class_init (GtkPrinterClass *class)
    * Since: 2.10
    */
   signals[DETAILS_ACQUIRED] =
-    g_signal_new (I_("details-acquired"),
+    g_signal_new (g_intern_static_string("details-acquired"),
 		  G_TYPE_FROM_CLASS (class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkPrinterClass, details_acquired),

@@ -575,7 +575,7 @@ gtk_print_operation_class_init (GtkPrintOperationClass *class)
    * Since: 2.10
    */
   signals[DONE] =
-    g_signal_new (I_("done"),
+    g_signal_new (g_intern_static_string("done"),
 		  G_TYPE_FROM_CLASS (gobject_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkPrintOperationClass, done),
@@ -598,7 +598,7 @@ gtk_print_operation_class_init (GtkPrintOperationClass *class)
    * Since: 2.10
    */
   signals[BEGIN_PRINT] =
-    g_signal_new (I_("begin-print"),
+    g_signal_new (g_intern_static_string("begin-print"),
 		  G_TYPE_FROM_CLASS (gobject_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkPrintOperationClass, begin_print),
@@ -629,7 +629,7 @@ gtk_print_operation_class_init (GtkPrintOperationClass *class)
    * Since: 2.10
    */
   signals[PAGINATE] =
-    g_signal_new (I_("paginate"),
+    g_signal_new (g_intern_static_string("paginate"),
 		  G_TYPE_FROM_CLASS (gobject_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkPrintOperationClass, paginate),
@@ -652,7 +652,7 @@ gtk_print_operation_class_init (GtkPrintOperationClass *class)
    * Since: 2.10
    */
   signals[REQUEST_PAGE_SETUP] =
-    g_signal_new (I_("request-page-setup"),
+    g_signal_new (g_intern_static_string("request-page-setup"),
 		  G_TYPE_FROM_CLASS (gobject_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkPrintOperationClass, request_page_setup),
@@ -722,7 +722,7 @@ gtk_print_operation_class_init (GtkPrintOperationClass *class)
    * Since: 2.10
    */
   signals[DRAW_PAGE] =
-    g_signal_new (I_("draw-page"),
+    g_signal_new (g_intern_static_string("draw-page"),
 		  G_TYPE_FROM_CLASS (gobject_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkPrintOperationClass, draw_page),
@@ -744,7 +744,7 @@ gtk_print_operation_class_init (GtkPrintOperationClass *class)
    * Since: 2.10
    */
   signals[END_PRINT] =
-    g_signal_new (I_("end-print"),
+    g_signal_new (g_intern_static_string("end-print"),
 		  G_TYPE_FROM_CLASS (gobject_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkPrintOperationClass, end_print),
@@ -764,7 +764,7 @@ gtk_print_operation_class_init (GtkPrintOperationClass *class)
    * Since: 2.10
    */
   signals[STATUS_CHANGED] =
-    g_signal_new (I_("status-changed"),
+    g_signal_new (g_intern_static_string("status-changed"),
 		  G_TYPE_FROM_CLASS (class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkPrintOperationClass, status_changed),
@@ -794,7 +794,7 @@ gtk_print_operation_class_init (GtkPrintOperationClass *class)
    * Since: 2.10
    */
   signals[CREATE_CUSTOM_WIDGET] =
-    g_signal_new (I_("create-custom-widget"),
+    g_signal_new (g_intern_static_string("create-custom-widget"),
 		  G_TYPE_FROM_CLASS (class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkPrintOperationClass, create_custom_widget),
@@ -815,7 +815,7 @@ gtk_print_operation_class_init (GtkPrintOperationClass *class)
    * Since: 2.10
    */
   signals[CUSTOM_WIDGET_APPLY] =
-    g_signal_new (I_("custom-widget-apply"),
+    g_signal_new (g_intern_static_string("custom-widget-apply"),
 		  G_TYPE_FROM_CLASS (class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkPrintOperationClass, custom_widget_apply),
@@ -852,7 +852,7 @@ gtk_print_operation_class_init (GtkPrintOperationClass *class)
    * Since: 2.10
    */
   signals[PREVIEW] =
-    g_signal_new (I_("preview"),
+    g_signal_new (g_intern_static_string("preview"),
 		  G_TYPE_FROM_CLASS (gobject_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkPrintOperationClass, preview),

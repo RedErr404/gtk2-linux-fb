@@ -29,6 +29,8 @@
 
 #include "gdktypes.h"
 #include "gdkprivate-fb.h"
+#include "gdkalias.h"
+#include "gdkalias.h"
 
 GdkWindow *_gdk_fb_pointer_grab_window, *_gdk_fb_keyboard_grab_window, *_gdk_fb_pointer_grab_confine = NULL;
 gboolean _gdk_fb_pointer_grab_owner_events;

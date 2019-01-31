@@ -2,6 +2,7 @@
 #define GDKFB_H 1
 
 #include "gdk/gdkprivate.h"
+#include "gdkalias.h"
 
 typedef struct _GdkFBDisplay GdkFBDisplay;
 typedef struct _GdkFBWindow GdkFBWindow;
@@ -9,10 +10,10 @@ typedef struct _GdkFBWindow GdkFBWindow;
 extern GdkFBWindow *gdk_root_window;
 extern GdkFBDisplay *gdk_display;
 
-#define GDK_ROOT_WINDOW()             gdk_root_window
-#define GDK_DISPLAY()                 gdk_display
-
-#define gdk_font_lookup(xid)       ((GdkFont*) (xid))
+#define GDK_ROOT_WINDOW()		gdk_root_window
+#define GDK_DISPLAY()			gdk_display
+#define GDK_FB_USE_CHILD_SHAPE	((void *)1) 
+#define gdk_font_lookup(xid)	((GdkFont*) (xid))
 
 typedef enum {
   GDK_FB_0_DEGREES,
@@ -20,8 +21,6 @@ typedef enum {
   GDK_FB_180_DEGREES,
   GDK_FB_270_DEGREES
 } GdkFBAngle;
-
-#define GDK_FB_USE_CHILD_SHAPE ((void *)1)
 
 /* FB specific functions: */
 

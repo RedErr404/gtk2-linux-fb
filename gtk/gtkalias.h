@@ -5227,8 +5227,8 @@ extern __typeof (gtk_input_dialog_new) IA__gtk_input_dialog_new __attribute((vis
 
 #endif
 #endif
-#if IN_HEADER(__gtk_marshal_MARSHAL_H__)
-#if IN_FILE(__gtk_marshal_MARSHAL_C__)
+#if IN_HEADER(__gtk_marshal_MARSHAL_H__) || IN_HEADER(__GTK_MARSHAL_MARSHAL_H__)
+#if IN_FILE(__gtk_marshal_MARSHAL_C__) || IN_FILE(__GTK_MARSHAL_MARSHAL_C__)
 #ifndef GTK_DISABLE_DEPRECATED
 extern __typeof (gtk_marshal_BOOLEAN__POINTER) IA__gtk_marshal_BOOLEAN__POINTER __attribute((visibility("hidden")));
 #define gtk_marshal_BOOLEAN__POINTER IA__gtk_marshal_BOOLEAN__POINTER

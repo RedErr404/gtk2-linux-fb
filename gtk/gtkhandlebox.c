@@ -225,7 +225,7 @@ gtk_handle_box_class_init (GtkHandleBoxClass *class)
   class->child_detached = NULL;
 
   handle_box_signals[SIGNAL_CHILD_ATTACHED] =
-    g_signal_new (I_("child_attached"),
+    g_signal_new (g_intern_static_string("child_attached"),
 		  G_OBJECT_CLASS_TYPE (gobject_class),
 		  G_SIGNAL_RUN_FIRST,
 		  G_STRUCT_OFFSET (GtkHandleBoxClass, child_attached),
@@ -234,7 +234,7 @@ gtk_handle_box_class_init (GtkHandleBoxClass *class)
 		  G_TYPE_NONE, 1,
 		  GTK_TYPE_WIDGET);
   handle_box_signals[SIGNAL_CHILD_DETACHED] =
-    g_signal_new (I_("child_detached"),
+    g_signal_new (g_intern_static_string("child_detached"),
 		  G_OBJECT_CLASS_TYPE (gobject_class),
 		  G_SIGNAL_RUN_FIRST,
 		  G_STRUCT_OFFSET (GtkHandleBoxClass, child_detached),

@@ -306,7 +306,7 @@ gtk_scrolled_window_class_init (GtkScrolledWindowClass *class)
 
 
   signals[SCROLL_CHILD] =
-    g_signal_new (I_("scroll_child"),
+    g_signal_new (g_intern_static_string("scroll_child"),
                   G_TYPE_FROM_CLASS (object_class),
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (GtkScrolledWindowClass, scroll_child),
@@ -316,7 +316,7 @@ gtk_scrolled_window_class_init (GtkScrolledWindowClass *class)
                   GTK_TYPE_SCROLL_TYPE,
 		  G_TYPE_BOOLEAN);
   signals[MOVE_FOCUS_OUT] =
-    g_signal_new (I_("move_focus_out"),
+    g_signal_new (g_intern_static_string("move_focus_out"),
                   G_TYPE_FROM_CLASS (object_class),
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (GtkScrolledWindowClass, move_focus_out),
@@ -930,7 +930,7 @@ gtk_scrolled_window_screen_changed (GtkWidget *widget,
     g_signal_connect (settings, "notify::gtk-scrolled-window-placement",
 		      G_CALLBACK (gtk_scrolled_window_settings_changed), 0);
   g_object_set_data (G_OBJECT (settings), 
-		     I_("gtk-scrolled-window-connection"),
+		     g_intern_static_string("gtk-scrolled-window-connection"),
 		     GUINT_TO_POINTER (window_placement_connection));
 }
 

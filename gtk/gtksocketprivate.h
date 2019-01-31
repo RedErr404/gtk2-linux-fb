@@ -26,6 +26,8 @@
 #ifndef __GTK_SOCKET_PRIVATE_H__
 #define __GTK_SOCKET_PRIVATE_H__
 
+#include "gtksocket.h"
+
 typedef struct _GtkSocketPrivate GtkSocketPrivate;
 
 struct _GtkSocketPrivate

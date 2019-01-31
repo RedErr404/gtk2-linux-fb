@@ -564,7 +564,7 @@ gtk_cell_renderer_text_class_init (GtkCellRendererTextClass *class)
    * This signal is emitted after @renderer has been edited.
    */
   text_cell_renderer_signals [EDITED] =
-    g_signal_new (I_("edited"),
+    g_signal_new (g_intern_static_string("edited"),
 		  G_OBJECT_CLASS_TYPE (object_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkCellRendererTextClass, edited),
@@ -1819,7 +1819,7 @@ gtk_cell_renderer_text_start_editing (GtkCellRenderer      *cell,
 
   if (celltext->text)
     gtk_entry_set_text (GTK_ENTRY (priv->entry), celltext->text);
-  g_object_set_data_full (G_OBJECT (priv->entry), I_(GTK_CELL_RENDERER_TEXT_PATH), g_strdup (path), g_free);
+  g_object_set_data_full (G_OBJECT (priv->entry), g_intern_static_string(GTK_CELL_RENDERER_TEXT_PATH), g_strdup (path), g_free);
   
   gtk_editable_select_region (GTK_EDITABLE (priv->entry), 0, -1);
   

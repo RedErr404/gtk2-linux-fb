@@ -361,7 +361,7 @@ gtk_radio_menu_item_class_init (GtkRadioMenuItemClass *klass)
    *
    * Since: 2.4
    */
-  group_changed_signal = g_signal_new (I_("group-changed"),
+  group_changed_signal = g_signal_new (g_intern_static_string("group-changed"),
 				       G_OBJECT_CLASS_TYPE (object_class),
 				       G_SIGNAL_RUN_FIRST,
 				       G_STRUCT_OFFSET (GtkRadioMenuItemClass, group_changed),

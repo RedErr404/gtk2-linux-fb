@@ -31,6 +31,7 @@
 #include <sys/ioctl.h>
 #include <sys/kd.h>
 #include <sys/vt.h>
+#include "gdkalias.h"
 
 typedef struct _GdkFBKeyboard GdkFBKeyboard;
 typedef struct _GdkFBKeyboardDevice GdkFBKeyboardDevice;
@@ -1601,3 +1602,6 @@ raw_get_for_keycode (GdkFBKeyboard       *kb,
 
   return *n_entries > 0;
 }
+
+#define __GDK_KEYBOARD_FB_C__
+#include "gdkaliasdef.c"

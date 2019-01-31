@@ -125,7 +125,7 @@ gtk_check_menu_item_class_init (GtkCheckMenuItemClass *klass)
   klass->draw_indicator = gtk_real_check_menu_item_draw_indicator;
 
   check_menu_item_signals[TOGGLED] =
-    g_signal_new (I_("toggled"),
+    g_signal_new (g_intern_static_string("toggled"),
 		  G_OBJECT_CLASS_TYPE (gobject_class),
 		  G_SIGNAL_RUN_FIRST,
 		  G_STRUCT_OFFSET (GtkCheckMenuItemClass, toggled),

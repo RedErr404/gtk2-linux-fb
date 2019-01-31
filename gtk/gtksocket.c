@@ -145,7 +145,7 @@ gtk_socket_class_init (GtkSocketClass *class)
   container_class->forall = gtk_socket_forall;
 
   socket_signals[PLUG_ADDED] =
-    g_signal_new (I_("plug_added"),
+    g_signal_new (g_intern_static_string("plug_added"),
 		  G_OBJECT_CLASS_TYPE (class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkSocketClass, plug_added),
@@ -153,7 +153,7 @@ gtk_socket_class_init (GtkSocketClass *class)
 		  _gtk_marshal_VOID__VOID,
 		  G_TYPE_NONE, 0);
   socket_signals[PLUG_REMOVED] =
-    g_signal_new (I_("plug_removed"),
+    g_signal_new (g_intern_static_string("plug_removed"),
 		  G_OBJECT_CLASS_TYPE (class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkSocketClass, plug_removed),
@@ -180,7 +180,7 @@ gtk_socket_init (GtkSocket *socket)
   socket->active = FALSE;
 
   socket->accel_group = gtk_accel_group_new ();
-  g_object_set_data (G_OBJECT (socket->accel_group), I_("gtk-socket"), socket);
+  g_object_set_data (G_OBJECT (socket->accel_group), g_intern_static_string("gtk-socket"), socket);
 }
 
 /**

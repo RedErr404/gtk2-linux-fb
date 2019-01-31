@@ -241,7 +241,7 @@ gtk_font_button_class_init (GtkFontButtonClass *klass)
    *
    * Since: 2.4
    */
-  font_button_signals[FONT_SET] = g_signal_new (I_("font-set"),
+  font_button_signals[FONT_SET] = g_signal_new (g_intern_static_string("font-set"),
                                                 G_TYPE_FROM_CLASS (gobject_class),
                                                 G_SIGNAL_RUN_FIRST,
                                                 G_STRUCT_OFFSET (GtkFontButtonClass, font_set),

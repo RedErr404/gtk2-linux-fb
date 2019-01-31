@@ -31,6 +31,7 @@
 #include <math.h>
 #include <unistd.h>
 #include <errno.h>
+#include "gdkalias.h"
 
 typedef struct _GdkFBMouse GdkFBMouse;
 typedef struct _GdkFBMouseDevice GdkFBMouseDevice;

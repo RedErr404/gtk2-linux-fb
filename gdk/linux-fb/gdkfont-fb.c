@@ -31,7 +31,7 @@
 #include "gdkfont.h"
 #include "gdkprivate-fb.h"
 #include "gdkpango.h"
-
+#include "gdkalias.h"
 #include <pango/pango.h>
 
 #include <freetype/freetype.h>
@@ -582,3 +582,7 @@ gdk_text_extents_wc (GdkFont        *font,
   g_warning ("gdk_text_extents_wc() is not implemented\n");
   return;
 }
+
+#define __GDK_FONT_FB_C__
+#include "gdkaliasdef.c"
+

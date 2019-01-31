@@ -116,7 +116,7 @@ gtk_cell_renderer_class_init (GtkCellRendererClass *class)
    * Since: 2.4
    */
   cell_renderer_signals[EDITING_CANCELED] =
-    g_signal_new (I_("editing-canceled"),
+    g_signal_new (g_intern_static_string("editing-canceled"),
 		  G_OBJECT_CLASS_TYPE (object_class),
 		  G_SIGNAL_RUN_FIRST,
 		  G_STRUCT_OFFSET (GtkCellRendererClass, editing_canceled),
@@ -161,7 +161,7 @@ gtk_cell_renderer_class_init (GtkCellRendererClass *class)
    * Since: 2.6
    */
   cell_renderer_signals[EDITING_STARTED] =
-    g_signal_new (I_("editing-started"),
+    g_signal_new (g_intern_static_string("editing-started"),
 		  G_OBJECT_CLASS_TYPE (object_class),
 		  G_SIGNAL_RUN_FIRST,
 		  G_STRUCT_OFFSET (GtkCellRendererClass, editing_started),

@@ -331,7 +331,7 @@ set_can_change_screen (GtkWidget *widget,
 {
   can_change_screen = can_change_screen != FALSE;
   
-  g_object_set_data (G_OBJECT (widget), I_("gtk-dnd-can-change-screen"),
+  g_object_set_data (G_OBJECT (widget), g_intern_static_string("gtk-dnd-can-change-screen"),
 		     GUINT_TO_POINTER (can_change_screen));
 }
 
@@ -355,7 +355,7 @@ gtk_drag_get_ipc_widget_for_screen (GdkScreen *screen)
       result = drag_widgets->data;
       drag_widgets = drag_widgets->next;
       g_object_set_data (G_OBJECT (screen),
-			 I_("gtk-dnd-ipc-widgets"),
+			 g_intern_static_string("gtk-dnd-ipc-widgets"),
 			 drag_widgets);
       g_slist_free_1 (tmp);
     }
@@ -411,7 +411,7 @@ gtk_drag_release_ipc_widget (GtkWidget *widget)
     gtk_window_group_remove_window (window->group, window);
   drag_widgets = g_slist_prepend (drag_widgets, widget);
   g_object_set_data (G_OBJECT (screen),
-		     I_("gtk-dnd-ipc-widgets"),
+		     g_intern_static_string("gtk-dnd-ipc-widgets"),
 		     drag_widgets);
 }
 
@@ -843,7 +843,7 @@ gtk_drag_get_data (GtkWidget      *widget,
   g_signal_connect (selection_widget, "selection_received",
 		    G_CALLBACK (gtk_drag_selection_received), widget);
 
-  g_object_set_data (G_OBJECT (selection_widget), I_("drag-context"), context);
+  g_object_set_data (G_OBJECT (selection_widget), g_intern_static_string("drag-context"), context);
 
   gtk_selection_convert (selection_widget,
 			 gdk_drag_get_selection (context),
@@ -929,7 +929,7 @@ gtk_drag_finish (GdkDragContext *context,
 
       g_object_ref (context);
       
-      g_object_set_data (G_OBJECT (selection_widget), I_("drag-context"), context);
+      g_object_set_data (G_OBJECT (selection_widget), g_intern_static_string("drag-context"), context);
       g_signal_connect (selection_widget, "selection_received",
 			G_CALLBACK (gtk_drag_selection_received),
 			NULL);
@@ -1067,7 +1067,7 @@ gtk_drag_dest_set_internal (GtkWidget       *widget,
   g_signal_connect (widget, "hierarchy_changed",
 		    G_CALLBACK (gtk_drag_dest_hierarchy_changed), site);
 
-  g_object_set_data_full (G_OBJECT (widget), I_("gtk-drag-dest"),
+  g_object_set_data_full (G_OBJECT (widget), g_intern_static_string("gtk-drag-dest"),
 			  site, gtk_drag_dest_site_destroy);
 }
 			    
@@ -1165,7 +1165,7 @@ gtk_drag_dest_unset (GtkWidget *widget)
 {
   g_return_if_fail (GTK_IS_WIDGET (widget));
 
-  g_object_set_data (G_OBJECT (widget), I_("gtk-drag-dest"), NULL);
+  g_object_set_data (G_OBJECT (widget), g_intern_static_string("gtk-drag-dest"), NULL);
 }
 
 /**
@@ -1616,7 +1616,7 @@ gtk_drag_selection_received (GtkWidget        *widget,
 					gtk_drag_selection_received,
 					data);
   
-  g_object_set_data (G_OBJECT (widget), I_("drag-context"), NULL);
+  g_object_set_data (G_OBJECT (widget), g_intern_static_string("drag-context"), NULL);
   g_object_unref (context);
 
   gtk_drag_release_ipc_widget (widget);
@@ -2230,7 +2230,7 @@ gtk_drag_begin_internal (GtkWidget         *widget,
   info = gtk_drag_get_source_info (context, TRUE);
   
   info->ipc_widget = ipc_widget;
-  g_object_set_data (G_OBJECT (info->ipc_widget), I_("gtk-info"), info);
+  g_object_set_data (G_OBJECT (info->ipc_widget), g_intern_static_string("gtk-info"), info);
 
   info->widget = gtk_widget_ref (widget);
   
@@ -2436,7 +2436,7 @@ gtk_drag_source_set (GtkWidget            *widget,
 			site);
       
       g_object_set_data_full (G_OBJECT (widget),
-			      I_("gtk-site-data"), 
+			      g_intern_static_string("gtk-site-data"), 
 			      site, gtk_drag_source_site_destroy);
     }
 
@@ -2469,7 +2469,7 @@ gtk_drag_source_unset (GtkWidget        *widget)
       g_signal_handlers_disconnect_by_func (widget,
 					    gtk_drag_source_event_cb,
 					    site);
-      g_object_set_data (G_OBJECT (widget), I_("gtk-site-data"), NULL);
+      g_object_set_data (G_OBJECT (widget), g_intern_static_string("gtk-site-data"), NULL);
     }
 }
 
@@ -3785,7 +3785,7 @@ gtk_drag_source_info_destroy (GtkDragSourceInfo *info)
     g_object_unref (info->widget);
 
   gtk_selection_remove_all (info->ipc_widget);
-  g_object_set_data (G_OBJECT (info->ipc_widget), I_("gtk-info"), NULL);
+  g_object_set_data (G_OBJECT (info->ipc_widget), g_intern_static_string("gtk-info"), NULL);
   source_widgets = g_slist_remove (source_widgets, info->ipc_widget);
   gtk_drag_release_ipc_widget (info->ipc_widget);
 

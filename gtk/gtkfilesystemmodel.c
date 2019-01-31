@@ -161,7 +161,7 @@ _gtk_file_system_model_class_init (GtkFileSystemModelClass *class)
   gobject_class->dispose = gtk_file_system_model_dispose;
 
   file_system_model_signals[FINISHED_LOADING] =
-    g_signal_new (I_("finished-loading"),
+    g_signal_new (g_intern_static_string("finished-loading"),
 		  G_OBJECT_CLASS_TYPE (gobject_class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkFileSystemModelClass, finished_loading),
@@ -1604,7 +1604,7 @@ get_children_get_folder_cb (GtkFileSystemHandle *handle,
       data->node->has_dummy = TRUE;
     }
 
-  g_object_set_data (G_OBJECT (data->node->folder), I_("model-node"), data->node);
+  g_object_set_data (G_OBJECT (data->node->folder), g_intern_static_string("model-node"), data->node);
 
 out:
   g_object_unref (data->model);

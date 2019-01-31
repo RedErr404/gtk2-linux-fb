@@ -32,6 +32,7 @@
 #include "gdkproperty.h"
 #include "gdkprivate.h"
 #include "gdkprivate-fb.h"
+#include "gdkalias.h"
 
 GdkAtom
 gdk_atom_intern (const gchar *atom_name,
@@ -263,3 +264,13 @@ gdk_property_change (GdkWindow   *window,
       event->property.state = GDK_PROPERTY_NEW_VALUE;
     }
 }
+
+GdkAtom
+gdk_atom_intern_static_string (const gchar *atom_name)
+{
+  return NULL;
+}
+
+
+#define __GDK_PROPERTY_FB_C__
+#include "gdkaliasdef.c"

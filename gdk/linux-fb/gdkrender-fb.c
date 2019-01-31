@@ -29,6 +29,7 @@
 #include <string.h>
 #include <signal.h>
 #include <sys/time.h>
+#include "gdkalias.h"
 
 /*
  * Reading pixel values from a generic drawable.

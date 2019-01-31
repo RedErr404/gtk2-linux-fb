@@ -131,7 +131,7 @@ gtk_option_menu_class_init (GtkOptionMenuClass *class)
   container_class = (GtkContainerClass*) class;
 
   signals[CHANGED] =
-    g_signal_new (I_("changed"),
+    g_signal_new (g_intern_static_string("changed"),
                   G_OBJECT_CLASS_TYPE (class),
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (GtkOptionMenuClass, changed),

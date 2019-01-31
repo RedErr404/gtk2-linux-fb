@@ -582,7 +582,7 @@ static void
 set_menu_bars (GtkWindow *window,
 	       GList     *menubars)
 {
-  g_object_set_data (G_OBJECT (window), I_("gtk-menu-bar-list"), menubars);
+  g_object_set_data (G_OBJECT (window), g_intern_static_string("gtk-menu-bar-list"), menubars);
 }
 
 static gboolean

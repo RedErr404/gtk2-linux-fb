@@ -40,7 +40,7 @@ gtk_file_chooser_get_type (void)
   if (!file_chooser_type)
     {
       file_chooser_type = g_type_register_static_simple (G_TYPE_INTERFACE,
-							 I_("GtkFileChooser"),
+							 g_intern_static_string("GtkFileChooser"),
 							 sizeof (GtkFileChooserIface),
 							 (GClassInitFunc) gtk_file_chooser_class_init,
 							 0, NULL, 0);
@@ -90,7 +90,7 @@ gtk_file_chooser_class_init (gpointer g_iface)
    * gtk_file_chooser_set_current_folder_uri(),
    * gtk_file_chooser_get_current_folder_uri().
    */
-  g_signal_new (I_("current-folder-changed"),
+  g_signal_new (g_intern_static_string("current-folder-changed"),
 		iface_type,
 		G_SIGNAL_RUN_LAST,
 		G_STRUCT_OFFSET (GtkFileChooserIface, current_folder_changed),
@@ -117,7 +117,7 @@ gtk_file_chooser_class_init (gpointer g_iface)
    * gtk_file_chooser_unselect_uri(), gtk_file_chooser_get_uri(),
    * gtk_file_chooser_get_uris().
    */
-  g_signal_new (I_("selection-changed"),
+  g_signal_new (g_intern_static_string("selection-changed"),
 		iface_type,
 		G_SIGNAL_RUN_LAST,
 		G_STRUCT_OFFSET (GtkFileChooserIface, selection_changed),
@@ -151,7 +151,7 @@ gtk_file_chooser_class_init (gpointer g_iface)
    * gtk_file_chooser_get_preview_filename(),
    * gtk_file_chooser_get_preview_uri().
    */
-  g_signal_new (I_("update-preview"),
+  g_signal_new (g_intern_static_string("update-preview"),
 		iface_type,
 		G_SIGNAL_RUN_LAST,
 		G_STRUCT_OFFSET (GtkFileChooserIface, update_preview),
@@ -175,7 +175,7 @@ gtk_file_chooser_class_init (gpointer g_iface)
    * gtk_file_chooser_get_filenames(), gtk_file_chooser_get_uri(),
    * gtk_file_chooser_get_uris().
    */
-  g_signal_new (I_("file-activated"),
+  g_signal_new (g_intern_static_string("file-activated"),
 		iface_type,
 		G_SIGNAL_RUN_LAST,
 		G_STRUCT_OFFSET (GtkFileChooserIface, file_activated),
@@ -184,7 +184,7 @@ gtk_file_chooser_class_init (gpointer g_iface)
 		G_TYPE_NONE, 0);
 
   /* Documented in the docbook files */
-  g_signal_new (I_("confirm-overwrite"),
+  g_signal_new (g_intern_static_string("confirm-overwrite"),
 		iface_type,
 		G_SIGNAL_RUN_LAST,
 		G_STRUCT_OFFSET (GtkFileChooserIface, confirm_overwrite),

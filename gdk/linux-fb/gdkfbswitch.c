@@ -34,6 +34,7 @@
 #include <unistd.h>
 
 #include "gdkfbmanager.h"
+#include "gdkalias.h"
 
 int
 main (int argc, char *argv[])

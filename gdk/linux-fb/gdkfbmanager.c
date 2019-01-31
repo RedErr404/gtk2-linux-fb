@@ -14,6 +14,8 @@
 
 #include "gdkfbmanager.h"
 
+#include "gdkalias.h"
+
 typedef struct {
   int socket;
   int pid; /* -1 if not initialized */

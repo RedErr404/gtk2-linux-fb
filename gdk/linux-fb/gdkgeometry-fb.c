@@ -1,5 +1,6 @@
 #include <config.h>
 #include "gdkprivate-fb.h"
+#include "gdkalias.h"
 
 void
 gdk_window_scroll (GdkWindow *window,
@@ -68,3 +69,6 @@ gdk_window_scroll (GdkWindow *window,
   if (handle_cursor)
     gdk_fb_cursor_unhide ();
 }
+
+#define __GDK_GEOMETRY_FB_C__
+#include "gdkaliasdef.c"

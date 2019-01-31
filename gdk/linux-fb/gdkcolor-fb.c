@@ -32,6 +32,7 @@
 
 #include "gdkcolor.h"
 #include "gdkprivate-fb.h"
+#include "gdkalias.h"
 
 #define GDK_COLORMAP_PRIVATE_DATA(cmap) ((GdkColormapPrivateFB *) GDK_COLORMAP (cmap)->windowing_data)
 
@@ -864,3 +865,6 @@ gdk_colormap_get_screen (GdkColormap *cmap)
 
   return gdk_screen_get_default ();
 }
+
+#define __GDK_COLOR_FB_C__
+#include "gdkaliasdef.c"

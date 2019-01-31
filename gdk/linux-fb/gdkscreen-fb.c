@@ -27,6 +27,7 @@
 #include <config.h>
 #include "gdk.h"
 #include "gdkprivate-fb.h"
+#include "gdkalias.h"
 
 static GdkColormap *default_colormap = NULL;
 
@@ -118,3 +119,6 @@ gdk_screen_make_display_name (GdkScreen *screen)
 {
   return g_strdup ("");
 }
+
+#define __GDK_SCREEN_FB_C__
+#include "gdkaliasdef.c"

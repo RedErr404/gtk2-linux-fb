@@ -32,6 +32,7 @@
 #include "gdkgc.h"
 #include "gdkfb.h"
 #include "gdkregion-generic.h"
+#include "gdkalias.h"
 
 typedef enum {
   GDK_GC_DIRTY_CLIP = 1 << 0,
@@ -376,5 +377,8 @@ _gdk_windowing_gc_copy (GdkGC *dst_gc,
 
   dst_private->set_pixel = src_private->set_pixel;
 
-  _gdk_fb_gc_calc_state (gc, old_mask | dst_private->values_mask);
+  _gdk_fb_gc_calc_state (dst_gc, old_mask | dst_private->values_mask);
 }
+
+#define __GDK_GC_FB_C__
+#include "gdkaliasdef.c"

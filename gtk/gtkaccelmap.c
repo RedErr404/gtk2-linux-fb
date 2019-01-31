@@ -950,7 +950,7 @@ gtk_accel_map_class_init (GtkAccelMapClass *accel_map_class)
    *
    * Since: 2.4
    */
-  accel_map_signals[CHANGED] = g_signal_new (I_("changed"),
+  accel_map_signals[CHANGED] = g_signal_new (g_intern_static_string("changed"),
 					     G_TYPE_FROM_CLASS (accel_map_class),
 					     G_SIGNAL_DETAILED|G_SIGNAL_RUN_LAST,
 					     0,

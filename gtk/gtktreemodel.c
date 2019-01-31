@@ -116,7 +116,7 @@ gtk_tree_model_get_type (void)
       };
 
       tree_model_type =
-	g_type_register_static (G_TYPE_INTERFACE, I_("GtkTreeModel"),
+	g_type_register_static (G_TYPE_INTERFACE, g_intern_static_string("GtkTreeModel"),
 				&tree_model_info, 0);
 
       g_type_interface_add_prerequisite (tree_model_type, G_TYPE_OBJECT);
@@ -155,7 +155,7 @@ gtk_tree_model_base_init (gpointer g_class)
        * This signal is emitted when a row in the model has changed.
        */
       tree_model_signals[ROW_CHANGED] =
-        g_signal_new (I_("row_changed"),
+        g_signal_new (g_intern_static_string("row_changed"),
                       GTK_TYPE_TREE_MODEL,
                       G_SIGNAL_RUN_LAST, 
                       G_STRUCT_OFFSET (GtkTreeModelIface, row_changed),
@@ -193,7 +193,7 @@ gtk_tree_model_base_init (gpointer g_class)
       closure = g_closure_new_simple (sizeof (GClosure), NULL);
       g_closure_set_marshal (closure, row_inserted_marshal);
       tree_model_signals[ROW_INSERTED] =
-        g_signal_newv (I_("row_inserted"),
+        g_signal_newv (g_intern_static_string("row_inserted"),
                        GTK_TYPE_TREE_MODEL,
                        G_SIGNAL_RUN_FIRST,
                        closure,
@@ -212,7 +212,7 @@ gtk_tree_model_base_init (gpointer g_class)
        * its last child row.
        */
       tree_model_signals[ROW_HAS_CHILD_TOGGLED] =
-        g_signal_new (I_("row_has_child_toggled"),
+        g_signal_new (g_intern_static_string("row_has_child_toggled"),
                       GTK_TYPE_TREE_MODEL,
                       G_SIGNAL_RUN_LAST,
                       G_STRUCT_OFFSET (GtkTreeModelIface, row_has_child_toggled),
@@ -242,7 +242,7 @@ gtk_tree_model_base_init (gpointer g_class)
       closure = g_closure_new_simple (sizeof (GClosure), NULL);
       g_closure_set_marshal (closure, row_deleted_marshal);
       tree_model_signals[ROW_DELETED] =
-        g_signal_newv (I_("row_deleted"),
+        g_signal_newv (g_intern_static_string("row_deleted"),
                        GTK_TYPE_TREE_MODEL,
                        G_SIGNAL_RUN_FIRST,
                        closure,
@@ -268,7 +268,7 @@ gtk_tree_model_base_init (gpointer g_class)
       closure = g_closure_new_simple (sizeof (GClosure), NULL);
       g_closure_set_marshal (closure, rows_reordered_marshal);
       tree_model_signals[ROWS_REORDERED] =
-        g_signal_newv (I_("rows_reordered"),
+        g_signal_newv (g_intern_static_string("rows_reordered"),
                        GTK_TYPE_TREE_MODEL,
                        G_SIGNAL_RUN_FIRST,
                        closure,
@@ -663,7 +663,7 @@ gtk_tree_path_get_type (void)
   static GType our_type = 0;
   
   if (our_type == 0)
-    our_type = g_boxed_type_register_static (I_("GtkTreePath"),
+    our_type = g_boxed_type_register_static (g_intern_static_string("GtkTreePath"),
 					     (GBoxedCopyFunc) gtk_tree_path_copy,
 					     (GBoxedFreeFunc) gtk_tree_path_free);
 
@@ -892,7 +892,7 @@ gtk_tree_iter_get_type (void)
   static GType our_type = 0;
   
   if (our_type == 0)
-    our_type = g_boxed_type_register_static (I_("GtkTreeIter"),
+    our_type = g_boxed_type_register_static (g_intern_static_string("GtkTreeIter"),
 					     (GBoxedCopyFunc) gtk_tree_iter_copy,
 					     (GBoxedFreeFunc) gtk_tree_iter_free);
 
@@ -1642,7 +1642,7 @@ gtk_tree_row_reference_get_type (void)
   static GType our_type = 0;
   
   if (our_type == 0)
-    our_type = g_boxed_type_register_static (I_("GtkTreeRowReference"),
+    our_type = g_boxed_type_register_static (g_intern_static_string("GtkTreeRowReference"),
 					     (GBoxedCopyFunc) gtk_tree_row_reference_copy,
 					     (GBoxedFreeFunc) gtk_tree_row_reference_free);
 
@@ -1978,7 +1978,7 @@ gtk_tree_row_reference_new_proxy (GObject      *proxy,
       refs->list = NULL;
 
       g_object_set_data_full (G_OBJECT (proxy),
-			      I_(ROW_REF_DATA_STRING),
+			      g_intern_static_string(ROW_REF_DATA_STRING),
                               refs, release_row_references);
     }
 
@@ -2092,7 +2092,7 @@ gtk_tree_row_reference_free (GtkTreeRowReference *reference)
   if (refs->list == NULL)
     {
       g_object_set_data (G_OBJECT (reference->proxy),
-			 I_(ROW_REF_DATA_STRING),
+			 g_intern_static_string(ROW_REF_DATA_STRING),
 			 NULL);
     }
 

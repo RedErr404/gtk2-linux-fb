@@ -55,7 +55,7 @@ gtk_tree_selection_class_init (GtkTreeSelectionClass *class)
   class->changed = NULL;
 
   tree_selection_signals[CHANGED] =
-    g_signal_new (I_("changed"),
+    g_signal_new (g_intern_static_string("changed"),
 		  G_OBJECT_CLASS_TYPE (object_class),
 		  G_SIGNAL_RUN_FIRST,
 		  G_STRUCT_OFFSET (GtkTreeSelectionClass, changed),

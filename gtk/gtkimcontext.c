@@ -62,7 +62,7 @@ gtk_im_context_class_init (GtkIMContextClass *klass)
   klass->set_surrounding = gtk_im_context_real_set_surrounding;
 
   im_context_signals[PREEDIT_START] =
-    g_signal_new (I_("preedit_start"),
+    g_signal_new (g_intern_static_string("preedit_start"),
 		  G_TYPE_FROM_CLASS (klass),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkIMContextClass, preedit_start),
@@ -71,7 +71,7 @@ gtk_im_context_class_init (GtkIMContextClass *klass)
 		  G_TYPE_NONE, 0);
   
   im_context_signals[PREEDIT_END] =
-    g_signal_new (I_("preedit_end"),
+    g_signal_new (g_intern_static_string("preedit_end"),
 		  G_TYPE_FROM_CLASS (klass),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkIMContextClass, preedit_end),
@@ -80,7 +80,7 @@ gtk_im_context_class_init (GtkIMContextClass *klass)
 		  G_TYPE_NONE, 0);
   
   im_context_signals[PREEDIT_CHANGED] =
-    g_signal_new (I_("preedit_changed"),
+    g_signal_new (g_intern_static_string("preedit_changed"),
 		  G_TYPE_FROM_CLASS (klass),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkIMContextClass, preedit_changed),
@@ -89,7 +89,7 @@ gtk_im_context_class_init (GtkIMContextClass *klass)
 		  G_TYPE_NONE, 0);
   
   im_context_signals[COMMIT] =
-    g_signal_new (I_("commit"),
+    g_signal_new (g_intern_static_string("commit"),
 		  G_TYPE_FROM_CLASS (klass),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkIMContextClass, commit),
@@ -99,7 +99,7 @@ gtk_im_context_class_init (GtkIMContextClass *klass)
 		  G_TYPE_STRING);
 
   im_context_signals[RETRIEVE_SURROUNDING] =
-    g_signal_new (I_("retrieve_surrounding"),
+    g_signal_new (g_intern_static_string("retrieve_surrounding"),
                   G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (GtkIMContextClass, retrieve_surrounding),
@@ -107,7 +107,7 @@ gtk_im_context_class_init (GtkIMContextClass *klass)
                   _gtk_marshal_BOOLEAN__VOID,
                   G_TYPE_BOOLEAN, 0);
   im_context_signals[DELETE_SURROUNDING] =
-    g_signal_new (I_("delete_surrounding"),
+    g_signal_new (g_intern_static_string("delete_surrounding"),
                   G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (GtkIMContextClass, delete_surrounding),
@@ -180,7 +180,7 @@ gtk_im_context_real_get_surrounding (GtkIMContext *context,
   if (!info)
     {
       info = &local_info;
-      g_object_set_data (G_OBJECT (context), I_("gtk-im-surrounding-info"), info);
+      g_object_set_data (G_OBJECT (context), g_intern_static_string("gtk-im-surrounding-info"), info);
       info_is_local = TRUE;
     }
   
@@ -202,7 +202,7 @@ gtk_im_context_real_get_surrounding (GtkIMContext *context,
   if (info_is_local)
     {
       g_free (info->text);
-      g_object_set_data (G_OBJECT (context), I_("gtk-im-surrounding-info"), NULL);
+      g_object_set_data (G_OBJECT (context), g_intern_static_string("gtk-im-surrounding-info"), NULL);
     }
   
   return result;

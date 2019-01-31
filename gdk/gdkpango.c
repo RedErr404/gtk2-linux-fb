@@ -1438,6 +1438,7 @@ gdk_pango_context_get (void)
   return gdk_pango_context_get_for_screen (gdk_screen_get_default ());
 }
 
+#ifndef GDK_WINDOWING_FB
 /**
  * gdk_pango_context_get_for_screen:
  * @screen: the #GdkScreen for which the context is to be created.
@@ -1482,6 +1483,7 @@ gdk_pango_context_get_for_screen (GdkScreen *screen)
 
   return context;
 }
+#endif
 
 #define __GDK_PANGO_C__
 #include "gdkaliasdef.c"

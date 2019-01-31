@@ -183,7 +183,7 @@ gtk_adjustment_class_init (GtkAdjustmentClass *class)
   
 
   adjustment_signals[CHANGED] =
-    g_signal_new (I_("changed"),
+    g_signal_new (g_intern_static_string("changed"),
 		  G_OBJECT_CLASS_TYPE (class),
 		  G_SIGNAL_RUN_FIRST | G_SIGNAL_NO_RECURSE,
 		  G_STRUCT_OFFSET (GtkAdjustmentClass, changed),
@@ -191,7 +191,7 @@ gtk_adjustment_class_init (GtkAdjustmentClass *class)
 		  _gtk_marshal_VOID__VOID,
 		  G_TYPE_NONE, 0);
   adjustment_signals[VALUE_CHANGED] =
-    g_signal_new (I_("value_changed"),
+    g_signal_new (g_intern_static_string("value_changed"),
 		  G_OBJECT_CLASS_TYPE (class),
 		  G_SIGNAL_RUN_FIRST | G_SIGNAL_NO_RECURSE,
 		  G_STRUCT_OFFSET (GtkAdjustmentClass, value_changed),

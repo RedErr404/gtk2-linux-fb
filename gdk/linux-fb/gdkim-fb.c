@@ -27,6 +27,7 @@
 #include "gdki18n.h"
 #include "gdkinternals.h"
 #include "gdkprivate-fb.h"
+#include "gdkalias.h"
 
 #if HAVE_CONFIG_H
 #  include <config.h>
@@ -103,3 +104,6 @@ gdk_mbstowcs (GdkWChar *dest, const gchar *src, gint dest_max)
 
   return i;
 }
+
+#define __GDK_IM_FB_C__
+#include "gdkaliasdef.c"

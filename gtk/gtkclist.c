@@ -486,7 +486,7 @@ gtk_clist_get_type (void)
 	(GtkClassInitFunc) NULL,
       };
 
-      I_("GtkCList");
+      g_intern_static_string("GtkCList");
       clist_type = gtk_type_unique (GTK_TYPE_CONTAINER, &clist_info);
     }
 
@@ -609,7 +609,7 @@ gtk_clist_class_init (GtkCListClass *klass)
 			   ARG_SORT_TYPE);  
 
   widget_class->set_scroll_adjustments_signal =
-    gtk_signal_new (I_("set_scroll_adjustments"),
+    gtk_signal_new (g_intern_static_string("set_scroll_adjustments"),
 		    GTK_RUN_LAST,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkCListClass, set_scroll_adjustments),
@@ -617,7 +617,7 @@ gtk_clist_class_init (GtkCListClass *klass)
 		    GTK_TYPE_NONE, 2, GTK_TYPE_ADJUSTMENT, GTK_TYPE_ADJUSTMENT);
 
   clist_signals[SELECT_ROW] =
-    gtk_signal_new (I_("select_row"),
+    gtk_signal_new (g_intern_static_string("select_row"),
 		    GTK_RUN_FIRST,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkCListClass, select_row),
@@ -627,7 +627,7 @@ gtk_clist_class_init (GtkCListClass *klass)
 		    GTK_TYPE_INT,
 		    GDK_TYPE_EVENT | G_SIGNAL_TYPE_STATIC_SCOPE);
   clist_signals[UNSELECT_ROW] =
-    gtk_signal_new (I_("unselect_row"),
+    gtk_signal_new (g_intern_static_string("unselect_row"),
 		    GTK_RUN_FIRST,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkCListClass, unselect_row),
@@ -635,21 +635,21 @@ gtk_clist_class_init (GtkCListClass *klass)
 		    GTK_TYPE_NONE, 3, GTK_TYPE_INT,
 		    GTK_TYPE_INT, GDK_TYPE_EVENT);
   clist_signals[ROW_MOVE] =
-    gtk_signal_new (I_("row_move"),
+    gtk_signal_new (g_intern_static_string("row_move"),
 		    GTK_RUN_LAST,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkCListClass, row_move),
 		    _gtk_marshal_VOID__INT_INT,
 		    GTK_TYPE_NONE, 2, GTK_TYPE_INT, GTK_TYPE_INT);
   clist_signals[CLICK_COLUMN] =
-    gtk_signal_new (I_("click_column"),
+    gtk_signal_new (g_intern_static_string("click_column"),
 		    GTK_RUN_FIRST,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkCListClass, click_column),
 		    _gtk_marshal_VOID__INT,
 		    GTK_TYPE_NONE, 1, GTK_TYPE_INT);
   clist_signals[RESIZE_COLUMN] =
-    gtk_signal_new (I_("resize_column"),
+    gtk_signal_new (g_intern_static_string("resize_column"),
 		    GTK_RUN_LAST,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkCListClass, resize_column),
@@ -657,56 +657,56 @@ gtk_clist_class_init (GtkCListClass *klass)
 		    GTK_TYPE_NONE, 2, GTK_TYPE_INT, GTK_TYPE_INT);
 
   clist_signals[TOGGLE_FOCUS_ROW] =
-    gtk_signal_new (I_("toggle_focus_row"),
+    gtk_signal_new (g_intern_static_string("toggle_focus_row"),
                     GTK_RUN_LAST | GTK_RUN_ACTION,
                     GTK_CLASS_TYPE (object_class),
                     GTK_SIGNAL_OFFSET (GtkCListClass, toggle_focus_row),
                     _gtk_marshal_VOID__VOID,
                     GTK_TYPE_NONE, 0);
   clist_signals[SELECT_ALL] =
-    gtk_signal_new (I_("select_all"),
+    gtk_signal_new (g_intern_static_string("select_all"),
                     GTK_RUN_LAST | GTK_RUN_ACTION,
                     GTK_CLASS_TYPE (object_class),
                     GTK_SIGNAL_OFFSET (GtkCListClass, select_all),
                     _gtk_marshal_VOID__VOID,
                     GTK_TYPE_NONE, 0);
   clist_signals[UNSELECT_ALL] =
-    gtk_signal_new (I_("unselect_all"),
+    gtk_signal_new (g_intern_static_string("unselect_all"),
                     GTK_RUN_LAST | GTK_RUN_ACTION,
                     GTK_CLASS_TYPE (object_class),
                     GTK_SIGNAL_OFFSET (GtkCListClass, unselect_all),
                     _gtk_marshal_VOID__VOID,
                     GTK_TYPE_NONE, 0);
   clist_signals[UNDO_SELECTION] =
-    gtk_signal_new (I_("undo_selection"),
+    gtk_signal_new (g_intern_static_string("undo_selection"),
 		    GTK_RUN_LAST | GTK_RUN_ACTION,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkCListClass, undo_selection),
 		    _gtk_marshal_VOID__VOID,
 		    GTK_TYPE_NONE, 0);
   clist_signals[START_SELECTION] =
-    gtk_signal_new (I_("start_selection"),
+    gtk_signal_new (g_intern_static_string("start_selection"),
 		    GTK_RUN_LAST | GTK_RUN_ACTION,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkCListClass, start_selection),
 		    _gtk_marshal_VOID__VOID,
 		    GTK_TYPE_NONE, 0);
   clist_signals[END_SELECTION] =
-    gtk_signal_new (I_("end_selection"),
+    gtk_signal_new (g_intern_static_string("end_selection"),
 		    GTK_RUN_LAST | GTK_RUN_ACTION,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkCListClass, end_selection),
 		    _gtk_marshal_VOID__VOID,
 		    GTK_TYPE_NONE, 0);
   clist_signals[TOGGLE_ADD_MODE] =
-    gtk_signal_new (I_("toggle_add_mode"),
+    gtk_signal_new (g_intern_static_string("toggle_add_mode"),
 		    GTK_RUN_LAST | GTK_RUN_ACTION,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkCListClass, toggle_add_mode),
 		    _gtk_marshal_VOID__VOID,
 		    GTK_TYPE_NONE, 0);
   clist_signals[EXTEND_SELECTION] =
-    gtk_signal_new (I_("extend_selection"),
+    gtk_signal_new (g_intern_static_string("extend_selection"),
                     GTK_RUN_LAST | GTK_RUN_ACTION,
                     GTK_CLASS_TYPE (object_class),
                     GTK_SIGNAL_OFFSET (GtkCListClass, extend_selection),
@@ -714,21 +714,21 @@ gtk_clist_class_init (GtkCListClass *klass)
                     GTK_TYPE_NONE, 3,
 		    GTK_TYPE_SCROLL_TYPE, GTK_TYPE_FLOAT, GTK_TYPE_BOOL);
   clist_signals[SCROLL_VERTICAL] =
-    gtk_signal_new (I_("scroll_vertical"),
+    gtk_signal_new (g_intern_static_string("scroll_vertical"),
                     GTK_RUN_LAST | GTK_RUN_ACTION,
                     GTK_CLASS_TYPE (object_class),
                     GTK_SIGNAL_OFFSET (GtkCListClass, scroll_vertical),
                     _gtk_marshal_VOID__ENUM_FLOAT,
                     GTK_TYPE_NONE, 2, GTK_TYPE_SCROLL_TYPE, GTK_TYPE_FLOAT);
   clist_signals[SCROLL_HORIZONTAL] =
-    gtk_signal_new (I_("scroll_horizontal"),
+    gtk_signal_new (g_intern_static_string("scroll_horizontal"),
                     GTK_RUN_LAST | GTK_RUN_ACTION,
                     GTK_CLASS_TYPE (object_class),
                     GTK_SIGNAL_OFFSET (GtkCListClass, scroll_horizontal),
                     _gtk_marshal_VOID__ENUM_FLOAT,
                     GTK_TYPE_NONE, 2, GTK_TYPE_SCROLL_TYPE, GTK_TYPE_FLOAT);
   clist_signals[ABORT_COLUMN_RESIZE] =
-    gtk_signal_new (I_("abort_column_resize"),
+    gtk_signal_new (g_intern_static_string("abort_column_resize"),
                     GTK_RUN_LAST | GTK_RUN_ACTION,
                     GTK_CLASS_TYPE (object_class),
                     GTK_SIGNAL_OFFSET (GtkCListClass, abort_column_resize),

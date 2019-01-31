@@ -240,7 +240,7 @@ gtk_expander_class_init (GtkExpanderClass *klass)
 							     GTK_PARAM_READABLE));
 
   widget_class->activate_signal =
-    g_signal_new (I_("activate"),
+    g_signal_new (g_intern_static_string("activate"),
 		  G_TYPE_FROM_CLASS (gobject_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkExpanderClass, activate),

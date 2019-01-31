@@ -119,7 +119,7 @@ gtk_tree_item_get_type (void)
         (GtkClassInitFunc) NULL,
       };
 
-      I_("GtkTreeItem");
+      g_intern_static_string("GtkTreeItem");
       tree_item_type = gtk_type_unique (gtk_item_get_type (), &tree_item_info);
     }
 
@@ -161,14 +161,14 @@ gtk_tree_item_class_init (GtkTreeItemClass *class)
   class->collapse = gtk_real_tree_item_collapse;
 
   tree_item_signals[EXPAND_TREE] =
-    gtk_signal_new (I_("expand"),
+    gtk_signal_new (g_intern_static_string("expand"),
 		    GTK_RUN_FIRST,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkTreeItemClass, expand),
 		    _gtk_marshal_VOID__VOID,
 		    GTK_TYPE_NONE, 0);
   tree_item_signals[COLLAPSE_TREE] =
-    gtk_signal_new (I_("collapse"),
+    gtk_signal_new (g_intern_static_string("collapse"),
 		    GTK_RUN_FIRST,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkTreeItemClass, collapse),

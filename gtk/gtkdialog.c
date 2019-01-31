@@ -121,7 +121,7 @@ gtk_dialog_class_init (GtkDialogClass *class)
                                                          GTK_PARAM_READWRITE));
   
   dialog_signals[RESPONSE] =
-    g_signal_new (I_("response"),
+    g_signal_new (g_intern_static_string("response"),
 		  G_OBJECT_CLASS_TYPE (class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkDialogClass, response),
@@ -131,7 +131,7 @@ gtk_dialog_class_init (GtkDialogClass *class)
 		  G_TYPE_INT);
 
   dialog_signals[CLOSE] =
-    g_signal_new (I_("close"),
+    g_signal_new (g_intern_static_string("close"),
 		  G_OBJECT_CLASS_TYPE (class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkDialogClass, close),
@@ -516,7 +516,7 @@ get_response_data (GtkWidget *widget,
       ad = g_slice_new (ResponseData);
       
       g_object_set_data_full (G_OBJECT (widget),
-                              I_("gtk-dialog-response-data"),
+                              g_intern_static_string("gtk-dialog-response-data"),
                               ad,
 			      response_data_free);
     }

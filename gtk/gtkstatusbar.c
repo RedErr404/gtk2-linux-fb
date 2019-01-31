@@ -143,7 +143,7 @@ gtk_statusbar_class_init (GtkStatusbarClass *class)
  							 TRUE,
  							 GTK_PARAM_READWRITE));
   statusbar_signals[SIGNAL_TEXT_PUSHED] =
-    g_signal_new (I_("text_pushed"),
+    g_signal_new (g_intern_static_string("text_pushed"),
 		  G_OBJECT_CLASS_TYPE (class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkStatusbarClass, text_pushed),
@@ -153,7 +153,7 @@ gtk_statusbar_class_init (GtkStatusbarClass *class)
 		  G_TYPE_UINT,
 		  G_TYPE_STRING);
   statusbar_signals[SIGNAL_TEXT_POPPED] =
-    g_signal_new (I_("text_popped"),
+    g_signal_new (g_intern_static_string("text_popped"),
 		  G_OBJECT_CLASS_TYPE (class),
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GtkStatusbarClass, text_popped),

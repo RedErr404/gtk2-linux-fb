@@ -195,7 +195,7 @@ gtk_list_get_type (void)
         (GtkClassInitFunc) NULL,
       };
 
-      I_("GtkList");
+      g_intern_static_string("GtkList");
       list_type = gtk_type_unique (GTK_TYPE_CONTAINER, &list_info);
     }
 
@@ -247,14 +247,14 @@ gtk_list_class_init (GtkListClass *class)
   class->unselect_child = gtk_real_list_unselect_child;
 
   list_signals[SELECTION_CHANGED] =
-    gtk_signal_new (I_("selection-changed"),
+    gtk_signal_new (g_intern_static_string("selection-changed"),
 		    GTK_RUN_FIRST,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkListClass, selection_changed),
 		    _gtk_marshal_VOID__VOID,
 		    GTK_TYPE_NONE, 0);
   list_signals[SELECT_CHILD] =
-    gtk_signal_new (I_("select_child"),
+    gtk_signal_new (g_intern_static_string("select_child"),
 		    GTK_RUN_FIRST,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkListClass, select_child),
@@ -262,7 +262,7 @@ gtk_list_class_init (GtkListClass *class)
 		    GTK_TYPE_NONE, 1,
 		    GTK_TYPE_WIDGET);
   list_signals[UNSELECT_CHILD] =
-    gtk_signal_new (I_("unselect_child"),
+    gtk_signal_new (g_intern_static_string("unselect_child"),
 		    GTK_RUN_FIRST,
 		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GtkListClass, unselect_child),

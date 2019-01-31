@@ -307,7 +307,7 @@ gtk_paned_class_init (GtkPanedClass *class)
 								    GTK_PARAM_READWRITE));
 
   signals [CYCLE_CHILD_FOCUS] =
-    g_signal_new (I_("cycle_child_focus"),
+    g_signal_new (g_intern_static_string("cycle_child_focus"),
 		  G_TYPE_FROM_CLASS (object_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkPanedClass, cycle_child_focus),
@@ -317,7 +317,7 @@ gtk_paned_class_init (GtkPanedClass *class)
 		  G_TYPE_BOOLEAN);
 
   signals [TOGGLE_HANDLE_FOCUS] =
-    g_signal_new (I_("toggle_handle_focus"),
+    g_signal_new (g_intern_static_string("toggle_handle_focus"),
 		  G_TYPE_FROM_CLASS (object_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkPanedClass, toggle_handle_focus),
@@ -326,7 +326,7 @@ gtk_paned_class_init (GtkPanedClass *class)
 		  G_TYPE_BOOLEAN, 0);
 
   signals[MOVE_HANDLE] =
-    g_signal_new (I_("move_handle"),
+    g_signal_new (g_intern_static_string("move_handle"),
 		  G_TYPE_FROM_CLASS (object_class),
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (GtkPanedClass, move_handle),
@@ -336,7 +336,7 @@ gtk_paned_class_init (GtkPanedClass *class)
                   GTK_TYPE_SCROLL_TYPE);
 
   signals [CYCLE_HANDLE_FOCUS] =
-    g_signal_new (I_("cycle_handle_focus"),
+    g_signal_new (g_intern_static_string("cycle_handle_focus"),
 		  G_TYPE_FROM_CLASS (object_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkPanedClass, cycle_handle_focus),
@@ -346,7 +346,7 @@ gtk_paned_class_init (GtkPanedClass *class)
 		  G_TYPE_BOOLEAN);
 
   signals [ACCEPT_POSITION] =
-    g_signal_new (I_("accept_position"),
+    g_signal_new (g_intern_static_string("accept_position"),
 		  G_TYPE_FROM_CLASS (object_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkPanedClass, accept_position),
@@ -355,7 +355,7 @@ gtk_paned_class_init (GtkPanedClass *class)
 		  G_TYPE_BOOLEAN, 0);
 
   signals [CANCEL_POSITION] =
-    g_signal_new (I_("cancel_position"),
+    g_signal_new (g_intern_static_string("cancel_position"),
 		  G_TYPE_FROM_CLASS (object_class),
 		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		  G_STRUCT_OFFSET (GtkPanedClass, cancel_position),
