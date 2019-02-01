@@ -34,76 +34,157 @@
 #include "gdkprivate-fb.h"
 #include "gdkalias.h"
 
+static GHashTable *names_to_atoms;
+static GPtrArray *atoms_to_names;
+
+static const gchar xatoms_string[] = 
+  /* These are all the standard predefined X atoms */
+  "NONE\0"
+  "PRIMARY\0"
+  "SECONDARY\0"
+  "ARC\0"
+  "ATOM\0"
+  "BITMAP\0"
+  "CARDINAL\0"
+  "COLORMAP\0"
+  "CURSOR\0"
+  "CUT_BUFFER0\0"
+  "CUT_BUFFER1\0"
+  "CUT_BUFFER2\0"
+  "CUT_BUFFER3\0"
+  "CUT_BUFFER4\0"
+  "CUT_BUFFER5\0"
+  "CUT_BUFFER6\0"
+  "CUT_BUFFER7\0"
+  "DRAWABLE\0"
+  "FONT\0"
+  "INTEGER\0"
+  "PIXMAP\0"
+  "POINT\0"
+  "RECTANGLE\0"
+  "RESOURCE_MANAGER\0"
+  "RGB_COLOR_MAP\0"
+  "RGB_BEST_MAP\0"
+  "RGB_BLUE_MAP\0"
+  "RGB_DEFAULT_MAP\0"
+  "RGB_GRAY_MAP\0"
+  "RGB_GREEN_MAP\0"
+  "RGB_RED_MAP\0"
+  "STRING\0"
+  "VISUALID\0"
+  "WINDOW\0"
+  "WM_COMMAND\0"
+  "WM_HINTS\0"
+  "WM_CLIENT_MACHINE\0"
+  "WM_ICON_NAME\0"
+  "WM_ICON_SIZE\0"
+  "WM_NAME\0"
+  "WM_NORMAL_HINTS\0"
+  "WM_SIZE_HINTS\0"
+  "WM_ZOOM_HINTS\0"
+  "MIN_SPACE\0"
+  "NORM_SPACE\0"
+  "MAX_SPACE\0"
+  "END_SPACE\0"
+  "SUPERSCRIPT_X\0"
+  "SUPERSCRIPT_Y\0"
+  "SUBSCRIPT_X\0"
+  "SUBSCRIPT_Y\0"
+  "UNDERLINE_POSITION\0"
+  "UNDERLINE_THICKNESS\0"
+  "STRIKEOUT_ASCENT\0"
+  "STRIKEOUT_DESCENT\0"
+  "ITALIC_ANGLE\0"
+  "X_HEIGHT\0"
+  "QUAD_WIDTH\0"
+  "WEIGHT\0"
+  "POINT_SIZE\0"
+  "RESOLUTION\0"
+  "COPYRIGHT\0"
+  "NOTICE\0"
+  "FONT_NAME\0"
+  "FAMILY_NAME\0"
+  "FULL_NAME\0"
+  "CAP_HEIGHT\0"
+  "WM_CLASS\0"
+  "WM_TRANSIENT_FOR\0"
+;
+
+static const gint xatoms_offset[] = {
+    0,   5,  13,  23,  27,  32,  39,  48,  57,  64,  76,  88, 
+  100, 112, 124, 136, 148, 160, 169, 174, 182, 189, 195, 205, 
+  222, 236, 249, 262, 278, 291, 305, 317, 324, 333, 340, 351, 
+  360, 378, 391, 404, 412, 428, 442, 456, 466, 477, 487, 497, 
+  511, 525, 537, 549, 568, 588, 605, 623, 636, 645, 656, 663, 
+  674, 685, 695, 702, 712, 724, 734, 745, 754
+};
+
+#define N_CUSTOM_PREDEFINED 1
+
+static void
+ensure_atom_tables (void)
+{
+  int i;
+  
+  if (names_to_atoms)
+    return;
+
+  names_to_atoms = g_hash_table_new (g_str_hash, g_str_equal);
+  atoms_to_names = g_ptr_array_sized_new (G_N_ELEMENTS (xatoms_offset));
+
+  for (i = 0; i < G_N_ELEMENTS (xatoms_offset); i++)
+    {
+      g_hash_table_insert(names_to_atoms, (gchar *)xatoms_string + xatoms_offset[i], GINT_TO_POINTER (i));
+      g_ptr_array_add(atoms_to_names, (gchar *)xatoms_string + xatoms_offset[i]);
+    }
+}
+
+static GdkAtom
+intern_atom_internal (const gchar *atom_name, gboolean allocate)
+{
+  gpointer result;
+  gchar *name;
+  g_return_val_if_fail (atom_name != NULL, GDK_NONE);
+
+  ensure_atom_tables ();
+  
+  if (g_hash_table_lookup_extended (names_to_atoms, atom_name, NULL, &result))
+    return result;
+  
+  result = GINT_TO_POINTER (atoms_to_names->len);
+  name = allocate ? g_strdup (atom_name) : (gchar *)atom_name;
+  g_hash_table_insert(names_to_atoms, name, result);
+  g_ptr_array_add(atoms_to_names, name);
+  
+  return result;  
+}
+
 GdkAtom
 gdk_atom_intern (const gchar *atom_name,
 		 gboolean     only_if_exists)
 {
   g_return_val_if_fail (atom_name != NULL, GDK_NONE);
-
-  if (strcmp (atom_name, "PRIMARY") == 0)
-    return GDK_SELECTION_PRIMARY;
-  else if (strcmp (atom_name, "SECONDARY") == 0)
-    return GDK_SELECTION_SECONDARY;
-  else if (strcmp (atom_name, "CLIPBOARD") == 0)
-    return GDK_SELECTION_CLIPBOARD;
-  else if (strcmp (atom_name, "ATOM") == 0)
-    return GDK_SELECTION_TYPE_ATOM;
-  else if (strcmp (atom_name, "BITMAP") == 0)
-    return GDK_SELECTION_TYPE_BITMAP;
-  else if (strcmp (atom_name, "COLORMAP") == 0)
-    return GDK_SELECTION_TYPE_COLORMAP;
-  else if (strcmp (atom_name, "DRAWABLE") == 0)
-    return GDK_SELECTION_TYPE_DRAWABLE;
-  else if (strcmp (atom_name, "INTEGER") == 0)
-    return GDK_SELECTION_TYPE_INTEGER;
-  else if (strcmp (atom_name, "PIXMAP") == 0)
-    return GDK_SELECTION_TYPE_PIXMAP;
-  else if (strcmp (atom_name, "WINDOW") == 0)
-    return GDK_SELECTION_TYPE_WINDOW;
-  else if (strcmp (atom_name, "STRING") == 0)
-    return GDK_SELECTION_TYPE_STRING;
-  else
-    return GUINT_TO_POINTER (256 + g_quark_from_string (atom_name));
+  return intern_atom_internal (atom_name, TRUE);
 }
 
-gchar*
+GdkAtom
+gdk_atom_intern_static_string (const gchar *atom_name)
+{
+  return intern_atom_internal (atom_name, FALSE);
+}
+
+
+gchar *
 gdk_atom_name (GdkAtom atom)
 {
-  if (GPOINTER_TO_UINT (atom) < 256)
-    {
-      
-      switch (GPOINTER_TO_UINT (atom))
-	{
-	case GPOINTER_TO_UINT (GDK_SELECTION_PRIMARY):
-	  return g_strdup ("PRIMARY");
-	case GPOINTER_TO_UINT (GDK_SELECTION_SECONDARY):
-	  return g_strdup ("SECONDARY");
-	case GPOINTER_TO_UINT (GDK_SELECTION_CLIPBOARD):
-	  return g_strdup ("CLIPBOARD");
-	case GPOINTER_TO_UINT (GDK_SELECTION_TYPE_ATOM):
-	  return g_strdup ("ATOM");
-	case GPOINTER_TO_UINT (GDK_SELECTION_TYPE_BITMAP):
-	  return g_strdup ("BITMAP");
-	case GPOINTER_TO_UINT (GDK_SELECTION_TYPE_COLORMAP):
-	  return g_strdup ("COLORMAP");
-	case GPOINTER_TO_UINT (GDK_SELECTION_TYPE_DRAWABLE):
-	  return g_strdup ("DRAWABLE");
-	case GPOINTER_TO_UINT (GDK_SELECTION_TYPE_INTEGER):
-	  return g_strdup ("INTEGER");
-	case GPOINTER_TO_UINT (GDK_SELECTION_TYPE_PIXMAP):
-	  return g_strdup ("PIXMAP");
-	case GPOINTER_TO_UINT (GDK_SELECTION_TYPE_WINDOW):
-	  return g_strdup ("WINDOW");
-	case GPOINTER_TO_UINT (GDK_SELECTION_TYPE_STRING):
-	  return g_strdup ("STRING");
-	default:
-	  g_warning (G_STRLOC "Invalid atom");
-	  return g_strdup ("<invalid>");
-	}
-    }
-  else
-    return g_strdup (g_quark_to_string (GPOINTER_TO_UINT (atom) - 256));
+  if (!atoms_to_names)
+    return NULL;
+    
+  if (GPOINTER_TO_INT (atom) >= atoms_to_names->len)
+    return NULL;
+  return g_strdup(g_ptr_array_index (atoms_to_names, GPOINTER_TO_INT (atom)));
 }
+
 
 static void
 gdk_property_delete_2 (GdkWindow *window,
@@ -158,38 +239,58 @@ gdk_property_get (GdkWindow   *window,
 		  gint        *actual_length,
 		  guchar     **data)
 {
-  GdkWindowFBData *fbd = GDK_WINDOW_FBDATA (window);
-  GdkWindowProperty *prop;
-  int nbytes;
+  GdkWindowFBData *impl;
+  GdkWindowProperty     *prop;
+  gint                   nbytes = 0;
 
-  g_return_val_if_fail (window != NULL, FALSE);
+  g_return_val_if_fail (window == NULL || GDK_IS_WINDOW (window), FALSE);
   g_return_val_if_fail (data != NULL, FALSE);
-  g_return_val_if_fail (actual_length != NULL, FALSE);
-  g_return_val_if_fail (GDK_IS_WINDOW (window), FALSE);
 
-  if (!fbd->properties)
+  if (!window)
+    window = _gdk_parent_root;
+
+  if (GDK_WINDOW_DESTROYED (window))
     return FALSE;
 
-  prop = g_hash_table_lookup (fbd->properties, GUINT_TO_POINTER (property));
+  impl = GDK_WINDOW_FBDATA (GDK_WINDOW_OBJECT (window)->impl);
+
+  if (!impl->properties)
+    return FALSE;
+
+  prop = g_hash_table_lookup (impl->properties, GUINT_TO_POINTER (property));
   if (!prop)
-    return FALSE;
-
-  nbytes = (offset + length * (prop->format >> 3)) - prop->length;
-  nbytes = MAX (nbytes, 0);
-  if (nbytes > 0)
     {
-      *data = g_malloc (nbytes+1);
+      if (actual_property_type)
+        *actual_property_type = GDK_NONE;
+      return FALSE;
+    }
+
+  nbytes = CLAMP (length, 0, prop->length - offset * 4);
+
+  if (nbytes > 0 &&
+      (prop->type == 0 /* AnyPropertyType */ || prop->type == type))
+    {
+      *data = g_malloc (nbytes + 1);
       memcpy (*data, prop->data + offset, nbytes);
       (*data)[nbytes] = 0;
     }
   else
-    *data = NULL;
-  *actual_length = nbytes / (prop->format >> 3);
-  *actual_property_type = prop->type;
-  *actual_format_type = prop->format;
+    {
+      *data = NULL;
+    }
 
-  if (pdelete)
-    gdk_property_delete_2 (window, property, prop);
+  if (actual_length)
+    *actual_length = nbytes;
+  if (actual_property_type)
+    *actual_property_type = prop->type;
+  if (actual_format_type)
+    *actual_format_type = prop->format;
+
+  /* only delete the property if it was completely retrieved */
+  if (pdelete && length >= *actual_length && *data != NULL)
+    {
+      gdk_property_delete_2 (window, property, prop);
+    }
 
   return TRUE;
 }
@@ -203,37 +304,49 @@ gdk_property_change (GdkWindow   *window,
 		     const guchar *data,
 		     gint         nelements)
 {
-  GdkWindowFBData *fbd = GDK_WINDOW_FBDATA (window);
-  GdkWindowProperty *prop, *new_prop;
-  int new_size = 0;
-  GdkEvent *event;
-  GdkWindow *event_window;
+  GdkWindowFBData *impl;
+  GdkWindowProperty     *prop;
+  GdkWindowProperty     *new_prop;
+  gint                   new_size = 0;
+  GdkEvent              *event;
+  GdkWindow             *event_window;
 
-  g_return_if_fail (window != NULL);
-  g_return_if_fail (GDK_IS_WINDOW (window));
+  g_return_if_fail (window == NULL || GDK_IS_WINDOW (window));
 
-  if (!fbd->properties)
-    fbd->properties = g_hash_table_new (NULL, NULL);
+  if (!window)
+    window = _gdk_parent_root;
 
-  prop = g_hash_table_lookup (fbd->properties, GUINT_TO_POINTER (property));
+  if (GDK_WINDOW_DESTROYED (window))
+    return;
 
-  switch(mode)
+  impl = GDK_WINDOW_FBDATA (GDK_WINDOW_OBJECT (window)->impl);
+
+  if (!impl->properties)
+    impl->properties = g_hash_table_new (NULL, NULL);
+
+  prop = g_hash_table_lookup (impl->properties, GUINT_TO_POINTER (property));
+
+  switch (mode)
     {
     case GDK_PROP_MODE_REPLACE:
       new_size = nelements * (format >> 3);
       break;
+
     case GDK_PROP_MODE_PREPEND:
     case GDK_PROP_MODE_APPEND:
       new_size = nelements * (format >> 3);
       if (prop)
-	new_size += prop->length;
-    default:
+        {
+          if (type != prop->type || format != prop->format)
+            return;
+          new_size += prop->length;
+        }
       break;
     }
 
   new_prop = g_malloc (G_STRUCT_OFFSET (GdkWindowProperty, data) + new_size);
   new_prop->length = new_size;
-  new_prop->type = type;
+  new_prop->type   = type;
   new_prop->format = format;
 
   switch (mode)
@@ -241,36 +354,35 @@ gdk_property_change (GdkWindow   *window,
     case GDK_PROP_MODE_REPLACE:
       memcpy (new_prop->data, data, new_size);
       break;
+
     case GDK_PROP_MODE_APPEND:
       if (prop)
-	memcpy (new_prop->data, prop->data, prop->length);
-      memcpy (new_prop->data + prop->length, data, (nelements * (format >> 3)));
+        memcpy (new_prop->data, prop->data, prop->length);
+      memcpy (new_prop->data + new_prop->length,
+              data, (nelements * (format >> 3)));
       break;
+
     case GDK_PROP_MODE_PREPEND:
       memcpy (new_prop->data, data, (nelements * (format >> 3)));
       if (prop)
-	memcpy (new_prop->data + (nelements * (format >> 3)), prop->data, prop->length);
+        memcpy (new_prop->data + (nelements * (format >> 3)),
+                prop->data, prop->length);
       break;
     }
 
-  g_hash_table_insert (fbd->properties, GUINT_TO_POINTER (property), new_prop);
+  g_hash_table_insert (impl->properties,
+                       GUINT_TO_POINTER (property), new_prop);
   g_free (prop);
 
   event_window = gdk_fb_other_event_window (window, GDK_PROPERTY_NOTIFY);
+
   if (event_window)
     {
       event = gdk_event_make (event_window, GDK_PROPERTY_NOTIFY, TRUE);
-      event->property.atom = property;
+      event->property.atom  = property;
       event->property.state = GDK_PROPERTY_NEW_VALUE;
     }
 }
-
-GdkAtom
-gdk_atom_intern_static_string (const gchar *atom_name)
-{
-  return NULL;
-}
-
 
 #define __GDK_PROPERTY_FB_C__
 #include "gdkaliasdef.c"
