@@ -118,9 +118,8 @@ struct _GdkWindowFBData
   GdkDrawableFBData drawable_data;
   GdkCursor *cursor;
   GHashTable *properties;
-
+  GdkWindowTypeHint type_hint;
   GdkRegion *shape; /* Can also be GDK_FB_USE_CHILD_SHAPE */
-  
   guint realized : 1;
 };
 

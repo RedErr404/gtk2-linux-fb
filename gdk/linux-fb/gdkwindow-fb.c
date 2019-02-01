@@ -2257,33 +2257,52 @@ void
 gdk_window_set_keep_above (GdkWindow *window, gboolean setting)
 {
   g_return_if_fail (GDK_IS_WINDOW (window));
-
+  static gboolean first_call = TRUE;
+  if (first_call) {
   g_warning ("gdk_window_set_keep_above() not implemented.\n");
+	first_call=FALSE;
+  }
 }
 
 void
 gdk_window_set_keep_below (GdkWindow *window, gboolean setting)
 {
   g_return_if_fail (GDK_IS_WINDOW (window));
-
+  static gboolean first_call = TRUE;
+  if (first_call) {
   g_warning ("gdk_window_set_keep_below() not implemented.\n");
+  first_call=FALSE;
+  }
 }
 
 void
 gdk_window_focus (GdkWindow *window,
                   guint32    timestamp)
 {
+  GdkWindow *toplevel;
+
   g_return_if_fail (GDK_IS_WINDOW (window));
 
-  g_warning ("gdk_window_focus() not implemented.\n");
+  if (GDK_WINDOW_DESTROYED (window))
+    return;
+
+  toplevel = gdk_fb_window_find_toplevel (window);
+  if (toplevel != _gdk_parent_root)
+    {
+      GdkWindowFBData *impl;
+      impl = GDK_WINDOW_FBDATA (GDK_WINDOW_OBJECT (window)->impl);
+      //impl->window->RequestFocus (impl->window);
+    }
 }
 
 void
 gdk_window_set_type_hint (GdkWindow        *window,
-			  GdkWindowTypeHint hint)
+                          GdkWindowTypeHint hint)
 {
-  g_return_if_fail (window != NULL);
   g_return_if_fail (GDK_IS_WINDOW (window));
+  if (GDK_WINDOW_DESTROYED (window))
+    return;
+  ((GdkWindowFBData *)((GdkWindowObject *)window)->impl)->type_hint = hint;
 }
 
 void
